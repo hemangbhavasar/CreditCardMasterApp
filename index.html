@@ -82,16 +82,6 @@
         body.theme-light .from-amber-950\/90 { background-image: linear-gradient(to bottom right, #fef3c7, #ffffff) !important; border-color: #fcd34d !important; }
         body.theme-light .bg-emerald-950\/40 { background-color: #d1fae5 !important; }
 
-        /* Color Contrast Fixes for Light Mode */
-        body.theme-light .text-purple-300 { color: #7e22ce !important; }
-        body.theme-light .text-purple-400, body.theme-light .text-purple-500 { color: #6b21a8 !important; }
-        body.theme-light .text-amber-300, body.theme-light .text-amber-400 { color: #b45309 !important; }
-        body.theme-light .text-emerald-300, body.theme-light .text-emerald-400 { color: #047857 !important; }
-        body.theme-light .text-cyan-300, body.theme-light .text-cyan-400 { color: #0e7490 !important; }
-        body.theme-light .text-red-300, body.theme-light .text-red-400, body.theme-light .text-red-500 { color: #b91c1c !important; }
-        body.theme-light .text-pink-400, body.theme-light .text-pink-500 { color: #be185d !important; }
-        body.theme-light .text-blue-400, body.theme-light .text-blue-500 { color: #1d4ed8 !important; }
-
         /* Pure OLED Black Enhancements */
         body.theme-pure-black [class*="bg-slate-8"], body.theme-pure-black [class*="bg-slate-9"] { background-color: #0a0a0a !important; }
         body.theme-pure-black [class*="border-slate-7"], body.theme-pure-black [class*="border-slate-8"] { border-color: #262626 !important; }
@@ -107,7 +97,6 @@
 </head>
 <body class="min-h-screen pb-safe pt-safe">
 
-    <!-- HEADER -->
     <header class="border-b border-slate-800 bg-slate-900/80 sticky top-0 z-50 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center gap-3">
@@ -134,7 +123,6 @@
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 grid grid-cols-1 lg:grid-cols-12 gap-6 pb-12">
 
-        <!-- LEFT COLUMN: INPUT CONTROLS -->
         <div class="lg:col-span-4 space-y-6">
             
             <!-- TRANSACTION DETAILS PANEL -->
@@ -242,7 +230,6 @@
 
         </div>
 
-        <!-- RIGHT COLUMN: MAIN CONTENT TABS -->
         <div class="lg:col-span-8 space-y-6">
 
             <!-- STRATEGY TAB SELECTION -->
@@ -284,14 +271,14 @@
 
                     <!-- Input & Action Block -->
                     <div class="flex flex-col gap-3">
-                        <div class="relative">
-                            <textarea id="aiQueryInput" rows="3" placeholder="e.g., I am at Decathlon buying sportswear for ₹4,000. Which card or voucher route is best?" class="w-full bg-slate-950/50 border border-purple-500/40 rounded-xl p-4 text-sm font-medium focus:outline-none focus:border-purple-400 transition-all placeholder:text-slate-500 resize-y text-inherit"></textarea>
+                        <div class="relative w-full">
+                            <textarea id="aiQueryInput" rows="3" placeholder="e.g., I am at Decathlon buying sportswear for ₹4,000. Which card or voucher route is best?" class="w-full bg-slate-950/50 border border-purple-500/40 rounded-xl p-4 text-sm sm:text-base font-medium focus:outline-none focus:border-purple-400 transition-all placeholder:text-slate-500 resize-y text-inherit"></textarea>
                             
                             <!-- Hidden File Input for Receipt Scanner -->
                             <input type="file" id="receiptUpload" accept="image/*" class="hidden" onchange="handleReceiptUpload(event)">
                         </div>
                         
-                        <div class="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto self-end">
+                        <div class="flex flex-col sm:flex-row items-center justify-end gap-3 w-full mt-2">
                             <button onclick="document.getElementById('receiptUpload').click()" class="w-full sm:w-auto px-5 py-3.5 rounded-xl font-bold text-sm bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 shadow-sm flex items-center justify-center gap-2 transition active:scale-95">
                                 <i class="fa-solid fa-camera"></i> Scan Receipt
                             </button>
@@ -371,7 +358,7 @@
                         <div class="flex items-center justify-between border-b border-slate-800 pb-2">
                             <span class="text-sm font-bold text-pink-500 flex items-center gap-1.5"><i class="fa-solid fa-robot"></i> Live Results</span>
                         </div>
-                        <div id="voucherSearchContent" class="text-sm leading-relaxed space-y-2 font-medium text-inherit"></div>
+                        <div id="voucherSearchContent" class="text-sm sm:text-base leading-relaxed space-y-2 font-medium text-inherit"></div>
                     </div>
                 </div>
             </div>
@@ -427,7 +414,7 @@
                         <div class="flex items-center justify-between border-b border-slate-800 pb-2">
                             <span class="text-sm font-bold text-red-500 flex items-center gap-1.5"><i class="fa-solid fa-robot"></i> Live Results</span>
                         </div>
-                        <div id="aiSearchContent" class="text-sm leading-relaxed space-y-2 font-medium text-inherit"></div>
+                        <div id="aiSearchContent" class="text-sm sm:text-base leading-relaxed space-y-2 font-medium text-inherit"></div>
                         <div id="aiSearchSources" class="pt-3 border-t border-slate-800 flex flex-wrap gap-2 text-xs opacity-90"></div>
                     </div>
                 </div>
@@ -777,9 +764,6 @@
 
             const systemPrompt = `Act as an expert Indian Credit Card Analyst. User's cards: HSBC Premier CC, Swiggy HDFC CC, HDFC Millennia CC, Amazon Pay ICICI CC, Yes Bank ACE RuPay CC, Scapia Federal CC, Axis Burgundy DC. Voucher portals: HSBC Gyftr, HDFC PayZapp, Kredit.pe, CRED, Park+, Zingoy. Give a crisp HTML recommendation specifying the exact best card/voucher route, expected return (₹ and %), step-by-step execution guide, and backup options based on 2026 rules (e.g., Swiggy HDFC ₹249 minimum, Accor 1:1 value). Use text-inherit classes for styling so it adapts to light/dark mode. If an image is provided, extract the merchant and total amount from the receipt to calculate the best card.`;
 
-            // Updated to gemini-1.5-flash
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-
             const contentsArray = [{ text: queryInput || "Analyze this receipt and tell me the best card to use." }];
             if (uploadedBase64Image) {
                 contentsArray.push({
@@ -788,12 +772,12 @@
             }
 
             try {
-                const response = await fetchWithRetry(apiUrl, {
+                const response = await fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         contents: [{ parts: contentsArray }],
-                        tools: [{ googleSearch: {} }], // Corrected syntax
+                        tools: [{ "googleSearch": {} }],
                         systemInstruction: { parts: [{ text: systemPrompt }] }
                     })
                 });
@@ -810,19 +794,25 @@
 
                     document.getElementById('aiResponseTimestamp').innerText = `Live at ${new Date().toLocaleTimeString('en-IN')}`;
 
-                    const sources = candidate.groundingMetadata?.groundingAttributions?.map(attr => ({ uri: attr.web?.uri, title: attr.web?.title })).filter(s => s.uri) || [];
-                    if (sources.length > 0) {
-                        sourcesBox.innerHTML = `<span class="font-bold text-inherit opacity-70">Verified Sources:</span> ` + sources.slice(0, 4).map(s => `
-                            <a href="${s.uri}" target="_blank" class="px-2.5 py-1 rounded-lg bg-slate-900/60 border border-slate-700 text-blue-500 hover:underline inline-flex items-center gap-1.5 active:scale-95">
-                                ${s.title.substring(0, 20)}... <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
-                            </a>
-                        `).join('');
-                    }
+                    try {
+                        const sources = candidate.groundingMetadata?.groundingAttributions?.map(attr => ({ uri: attr.web?.uri, title: attr.web?.title })).filter(s => s.uri) || [];
+                        if (sources.length > 0) {
+                            sourcesBox.innerHTML = `<span class="font-bold text-inherit opacity-70">Verified Sources:</span> ` + sources.slice(0, 4).map(s => `
+                                <a href="${s.uri}" target="_blank" class="px-2.5 py-1 rounded-lg bg-slate-900/60 border border-slate-700 text-blue-500 hover:underline inline-flex items-center gap-1.5 active:scale-95">
+                                    ${s.title.substring(0, 20)}... <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                                </a>
+                            `).join('');
+                        }
+                    } catch (e) { console.warn("No grounding metadata found"); }
+                } else if (result.error) {
+                    throw new Error(result.error.message);
+                } else {
+                    throw new Error("No response generated. Please check your query or API key.");
                 }
             } catch (err) {
                 body.innerHTML = `<div class="text-red-500 font-bold p-3 bg-red-500/10 rounded-xl border border-red-500/30">
                     <i class="fa-solid fa-triangle-exclamation"></i> API Error: ${err.message}
-                    <br><span class="text-xs font-normal mt-2 block text-slate-400">Testing locally on your computer? If you added GitHub HTTP restrictions to your key, Google blocks local files. Temporarily remove the restriction in Google Cloud to test locally, or upload it to GitHub to see it work!</span>
+                    <br><span class="text-xs font-normal mt-2 block text-slate-400">If you are using HTTP Restrictions in Google Cloud, ensure you aren't just opening this file locally (e.g. file://). Upload it to GitHub Pages to test properly!</span>
                 </div>`;
             } finally {
                 btn.disabled = false;
@@ -834,7 +824,7 @@
             const btn = document.getElementById('fetchOffersBtn');
             const container = document.getElementById('aiSearchResults');
             const content = document.getElementById('aiSearchContent');
-            if(!apiKey) return;
+            if(!apiKey) { alert("Please insert your Gemini API Key in the code at line 890 to use AI features."); return; }
 
             btn.disabled = true;
             btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Fetching...`;
@@ -847,10 +837,13 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         contents: [{ parts: [{ text: "Search for latest live HSBC Premier Credit Card India offers, transfer bonuses, or Apple/Dyson promotions posted on official sites, Twitter/X, and TechnoFino today. Provide a clean HTML summary using text-inherit classes." }] }],
-                        tools: [{ googleSearch: {} }]
+                        tools: [{ "googleSearch": {} }]
                     })
                 });
                 const result = await response.json();
+                
+                if (result.error) throw new Error(result.error.message);
+                
                 if (result.candidates?.[0]?.content?.parts?.[0]?.text) {
                     content.innerHTML = result.candidates[0].content.parts[0].text
                         .replace(/\*\*(.*?)\*\*/g, '<strong class="font-black text-inherit">$1</strong>')
@@ -864,7 +857,7 @@
             const btn = document.getElementById('fetchVoucherDealsBtn');
             const container = document.getElementById('voucherSearchResults');
             const content = document.getElementById('voucherSearchContent');
-            if(!apiKey) return;
+            if(!apiKey) { alert("Please insert your Gemini API Key in the code at line 890 to use AI features."); return; }
 
             btn.disabled = true;
             btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Scanning...`;
@@ -877,10 +870,13 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         contents: [{ parts: [{ text: "Search the web for today's active gift card flash sales in India specifically on CRED, PayZapp, Gyftr, Park+, and Zingoy. Provide a short bulleted HTML summary using text-inherit." }] }],
-                        tools: [{ googleSearch: {} }]
+                        tools: [{ "googleSearch": {} }]
                     })
                 });
                 const result = await response.json();
+                
+                if (result.error) throw new Error(result.error.message);
+                
                 if (result.candidates?.[0]?.content?.parts?.[0]?.text) {
                     content.innerHTML = result.candidates[0].content.parts[0].text
                         .replace(/\*\*(.*?)\*\*/g, '<strong class="font-black text-inherit">$1</strong>')
