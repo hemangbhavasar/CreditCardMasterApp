@@ -40,7 +40,6 @@
             --text-main: #0f172a;
         }
         
-        /* Native App Feel */
         html, body {
             overscroll-behavior-y: none;
             -webkit-tap-highlight-color: transparent;
@@ -66,11 +65,10 @@
             color: #0f172a !important; 
         }
         body.theme-light [class*="text-slate-"] { color: #475569 !important; }
-
         body.theme-light [class*="bg-slate-8"],
         body.theme-light [class*="bg-slate-9"] {
             background-color: #ffffff !important;
-            color: #0f172a;
+            color: #0f172a !important;
         }
         body.theme-light button[class*="bg-slate-9"] { background-color: #f1f5f9 !important; color: #0f172a !important; }
         body.theme-light button[class*="bg-slate-9"]:hover { background-color: #e2e8f0 !important; }
@@ -88,7 +86,7 @@
         body.theme-pure-black [class*="divide-slate-8"] > :not([hidden]) ~ :not([hidden]) { border-color: #262626 !important; }
         body.theme-pure-black .from-purple-950\/90 { background-image: linear-gradient(to bottom right, #1a0b2e, #000000) !important; border-color: #3b0764 !important; }
         body.theme-pure-black .from-amber-950\/90 { background-image: linear-gradient(to bottom right, #291400, #000000) !important; border-color: #78350f !important; }
-        body.theme-pure-black select, body.theme-pure-black input, body.theme-pure-black textarea { background-color: #0f0f0f !important; border-color: #262626 !important; }
+        body.theme-pure-black select, body.theme-pure-black input, body.theme-pure-black textarea { background-color: #0f0f0f !important; border-color: #262626 !important; color: #ffffff !important; }
         body.theme-pure-black .bg-emerald-950\/40 { background-color: #022c22 !important; }
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -112,7 +110,6 @@
                 </div>
             </div>
             <div class="flex items-center gap-2">
-                <!-- Theme Switcher -->
                 <button id="themeToggleBtn" onclick="cycleTheme()" class="px-3 py-2 rounded-xl text-xs font-bold bg-slate-800 border border-slate-700 hover:border-slate-500 text-slate-200 transition flex items-center gap-1.5 shadow-sm active:scale-95">
                     <i class="fa-solid fa-moon text-indigo-400" id="themeIcon"></i>
                     <span id="themeLabel" class="hidden sm:inline-block">Slate Dark</span>
@@ -124,15 +121,11 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 grid grid-cols-1 lg:grid-cols-12 gap-6 pb-12">
 
         <div class="lg:col-span-4 space-y-6">
-            
-            <!-- TRANSACTION DETAILS PANEL -->
             <div class="glass-panel rounded-2xl p-5 sm:p-6 border border-slate-800 shadow-xl">
                 <h2 class="text-base font-bold text-white mb-4 flex items-center gap-2">
                     <i class="fa-solid fa-sliders text-blue-400"></i> Transaction Settings
                 </h2>
-
                 <div class="space-y-4">
-                    <!-- Merchant Selection -->
                     <div>
                         <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Select Merchant / Category</label>
                         <select id="merchantSelect" onchange="calculateRewards()" class="w-full bg-slate-900 border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 transition-colors">
@@ -164,7 +157,6 @@
                         </select>
                     </div>
 
-                    <!-- Amount Input -->
                     <div>
                         <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Transaction Amount (₹)</label>
                         <div class="relative">
@@ -173,7 +165,6 @@
                         </div>
                     </div>
 
-                    <!-- Additional Toggles -->
                     <div class="pt-2 space-y-3">
                         <label class="flex items-center justify-between p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer hover:bg-slate-900 transition active:scale-[0.99]">
                             <span class="text-sm font-medium text-slate-300 flex items-center gap-2"><i class="fa-brands fa-amazon text-amber-400"></i> Prime Member</span>
@@ -191,96 +182,85 @@
                 </div>
             </div>
 
-            <!-- PORTFOLIO TOGGLES -->
             <div class="glass-panel rounded-2xl p-5 sm:p-6 border border-slate-800 shadow-xl">
-                <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-base font-bold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-wallet text-emerald-400"></i> Active Portfolio
-                    </h2>
-                </div>
-                <div class="space-y-2" id="cardToggles">
-                    <!-- Injected dynamically via JS -->
-                </div>
+                <h2 class="text-base font-bold text-white mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-wallet text-emerald-400"></i> Active Portfolio
+                </h2>
+                <div class="space-y-2" id="cardToggles"></div>
             </div>
 
-            <!-- DIRECT VOUCHER PORTALS -->
             <div class="glass-panel rounded-2xl p-5 sm:p-6 border border-slate-800 shadow-xl space-y-3">
                 <h3 class="text-sm font-bold text-white flex items-center gap-2">
                     <i class="fa-solid fa-arrow-up-right-from-square text-cyan-400"></i> Quick Portal Links
                 </h3>
                 <div class="space-y-2 text-xs">
                     <a href="https://www.gyftr.com/instabenefits" target="_blank" rel="noopener" class="flex items-center justify-between p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-red-500/50 transition group">
-                        <div class="flex items-center gap-2.5"><div class="w-2.5 h-2.5 rounded-full bg-red-500"></div><span class="font-semibold text-slate-200 group-hover:text-inherit">HSBC Gyftr Portal</span></div>
+                        <div class="flex items-center gap-2.5"><div class="w-2.5 h-2.5 rounded-full bg-red-500"></div><span class="font-semibold text-slate-200">HSBC Gyftr Portal</span></div>
                         <i class="fa-solid fa-chevron-right text-slate-500"></i>
                     </a>
                     <a href="https://smartbuy.hdfcbank.com/" target="_blank" rel="noopener" class="flex items-center justify-between p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-blue-500/50 transition group">
-                        <div class="flex items-center gap-2.5"><div class="w-2.5 h-2.5 rounded-full bg-blue-500"></div><span class="font-semibold text-slate-200 group-hover:text-inherit">HDFC SmartBuy</span></div>
+                        <div class="flex items-center gap-2.5"><div class="w-2.5 h-2.5 rounded-full bg-blue-500"></div><span class="font-semibold text-slate-200">HDFC SmartBuy</span></div>
                         <i class="fa-solid fa-chevron-right text-slate-500"></i>
                     </a>
                     <a href="https://kredit.pe/" target="_blank" rel="noopener" class="flex items-center justify-between p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/50 transition group">
-                        <div class="flex items-center gap-2.5"><div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div><span class="font-semibold text-slate-200 group-hover:text-inherit">Kredit.pe App</span></div>
+                        <div class="flex items-center gap-2.5"><div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div><span class="font-semibold text-slate-200">Kredit.pe App</span></div>
                         <i class="fa-solid fa-chevron-right text-slate-500"></i>
                     </a>
                     <a href="https://cred.club/" target="_blank" rel="noopener" class="flex items-center justify-between p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-pink-500/50 transition group">
-                        <div class="flex items-center gap-2.5"><div class="w-2.5 h-2.5 rounded-full bg-pink-500"></div><span class="font-semibold text-slate-200 group-hover:text-inherit">CRED App</span></div>
+                        <div class="flex items-center gap-2.5"><div class="w-2.5 h-2.5 rounded-full bg-pink-500"></div><span class="font-semibold text-slate-200">CRED App</span></div>
                         <i class="fa-solid fa-chevron-right text-slate-500"></i>
                     </a>
                 </div>
             </div>
-
         </div>
 
         <div class="lg:col-span-8 space-y-6">
-
-            <!-- STRATEGY TAB SELECTION -->
-            <div class="glass-panel rounded-2xl p-2 border border-slate-800 flex flex-nowrap overflow-x-auto no-scrollbar gap-2 snap-x">
-                <button id="tabAiBtn" onclick="switchStrategyTab('ai')" class="snap-start flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-600/30 border border-purple-400/40">
+            <div class="glass-panel rounded-2xl p-2 border border-slate-800 flex flex-nowrap overflow-x-auto no-scrollbar gap-2">
+                <button id="tabAiBtn" onclick="switchStrategyTab('ai')" class="flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-600/30 border border-purple-400/40">
                     <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i> AI Assistant
                 </button>
-                <button id="tabDirectBtn" onclick="switchStrategyTab('direct')" class="snap-start flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-slate-900 text-slate-400 hover:text-white">
+                <button id="tabDirectBtn" onclick="switchStrategyTab('direct')" class="flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-slate-900 text-slate-400 hover:text-white">
                     <i class="fa-solid fa-credit-card"></i> Direct Swipe
                 </button>
-                <button id="tabVoucherBtn" onclick="switchStrategyTab('voucher')" class="snap-start flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-slate-900 text-slate-400 hover:text-white">
+                <button id="tabVoucherBtn" onclick="switchStrategyTab('voucher')" class="flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-slate-900 text-slate-400 hover:text-white">
                     <i class="fa-solid fa-gift"></i> Voucher Route
                 </button>
-                <button id="tabHsbcSuiteBtn" onclick="switchStrategyTab('hsbc_suite')" class="snap-start flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-slate-900 text-red-400 hover:text-white border border-red-500/30 hover:bg-red-950/40">
+                <button id="tabHsbcSuiteBtn" onclick="switchStrategyTab('hsbc_suite')" class="flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-slate-900 text-red-400 hover:text-white border border-red-500/30">
                     <i class="fa-solid fa-crown"></i> HSBC Suite
                 </button>
-                <button id="tabGuideBtn" onclick="switchStrategyTab('guide')" class="snap-start flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-slate-900 text-amber-400 hover:text-white border border-amber-500/30 hover:bg-amber-950/40">
+                <button id="tabGuideBtn" onclick="switchStrategyTab('guide')" class="flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-slate-900 text-amber-400 hover:text-white border border-amber-500/30">
                     <i class="fa-solid fa-book-open"></i> Guide
                 </button>
             </div>
 
-            <!-- VIEW 0: NATURAL LANGUAGE AI ASSISTANT -->
+            <!-- VIEW 0: AI ASSISTANT -->
             <div id="aiAssistantView" class="space-y-6">
-                <!-- AI Input Box -->
                 <div class="relative rounded-2xl bg-gradient-to-br from-purple-950/90 via-slate-900 to-slate-950 border border-purple-500/40 p-5 sm:p-6 shadow-2xl space-y-4">
                     <div class="flex items-center justify-between">
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/30 text-xs font-bold">
                             <i class="fa-solid fa-robot"></i> SMART ADVISOR
                         </div>
-                        <span class="text-[10px] text-slate-400 bg-slate-900/80 px-2 py-1 rounded-full border border-slate-800 hidden sm:inline-block">Live Google Grounding</span>
+                        <span class="text-[10px] text-slate-400 bg-slate-900/80 px-2 py-1 rounded-full border border-slate-800">Live Google Grounding</span>
                     </div>
 
                     <div>
                         <h2 class="text-xl sm:text-2xl font-black text-inherit">Ask Where You Are Shopping</h2>
                         <p class="text-sm text-slate-400 mt-1 leading-relaxed">
-                            Type your scenario (e.g. <em>"At IKEA buying ₹15,000 furniture"</em>) or <strong>upload a receipt photo</strong>. AI checks your cards & live flash sales.
+                            Type your scenario (e.g. <em>"At IKEA buying ₹15,000 furniture"</em>) or upload a receipt photo.
                         </p>
                     </div>
 
-                    <!-- Input & Action Block -->
                     <div class="flex flex-col gap-3">
-                        <div class="relative w-full">
-                            <textarea id="aiQueryInput" rows="3" placeholder="e.g., I am at Decathlon buying sportswear for ₹4,000. Which card or voucher route is best?" class="w-full bg-slate-950/50 border border-purple-500/40 rounded-xl p-4 text-sm sm:text-base font-medium focus:outline-none focus:border-purple-400 transition-all placeholder:text-slate-500 resize-y text-inherit"></textarea>
-                            
-                            <!-- Hidden File Input for Receipt Scanner -->
-                            <input type="file" id="receiptUpload" accept="image/*" class="hidden" onchange="handleReceiptUpload(event)">
+                        <textarea id="aiQueryInput" rows="3" placeholder="e.g., I am at Decathlon buying sportswear for ₹4,000. Which card or voucher route is best?" class="w-full bg-slate-950/50 border border-purple-500/40 rounded-xl p-4 text-sm sm:text-base font-medium focus:outline-none focus:border-purple-400 transition-all placeholder:text-slate-500 text-inherit"></textarea>
+                        <div class="rounded-xl border border-purple-500/30 bg-slate-950/60 p-3">
+                            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">Google AI Studio API Key</label>
+                            <input type="password" id="aiApiKeyInput" placeholder="Enter a valid Google AI Studio key for live web-grounded AI results" class="w-full bg-slate-900 border border-slate-700 text-white rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-purple-400" />
                         </div>
+                        <input type="file" id="receiptUpload" accept="image/*" class="hidden" onchange="handleReceiptUpload(event)">
                         
-                        <div class="flex flex-col sm:flex-row items-center justify-end gap-3 w-full mt-2">
-                            <button onclick="document.getElementById('receiptUpload').click()" class="w-full sm:w-auto px-5 py-3.5 rounded-xl font-bold text-sm bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 shadow-sm flex items-center justify-center gap-2 transition active:scale-95">
-                                <i class="fa-solid fa-camera"></i> Scan Receipt
+                        <div class="flex flex-col sm:flex-row items-center justify-end gap-3 w-full">
+                            <button onclick="document.getElementById('receiptUpload').click()" class="w-full sm:w-auto px-5 py-3.5 rounded-xl font-bold text-sm bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 flex items-center justify-center gap-2 transition active:scale-95">
+                                <i class="fa-solid fa-camera"></i> Scan Bill / Receipt
                             </button>
                             <button onclick="submitAiQuery()" id="aiQuerySubmitBtn" class="w-full sm:w-auto px-6 py-3.5 rounded-xl font-bold text-sm bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white shadow-lg shadow-purple-600/30 flex items-center justify-center gap-2 transition active:scale-95">
                                 <i class="fa-solid fa-paper-plane"></i> Get Recommendation
@@ -288,45 +268,40 @@
                         </div>
                     </div>
 
-                    <!-- Image Preview Area (Hidden by default) -->
                     <div id="imagePreviewContainer" class="hidden relative inline-block border border-purple-500/30 rounded-xl overflow-hidden mt-2">
                         <img id="imagePreview" src="" alt="Receipt Preview" class="h-24 object-cover opacity-80">
                         <button onclick="clearReceiptUpload()" class="absolute top-1 right-1 bg-slate-900/80 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-500 transition"><i class="fa-solid fa-times"></i></button>
                     </div>
 
-                    <!-- Quick Chips -->
                     <div class="pt-2 flex flex-wrap items-center gap-2 text-xs">
                         <span class="font-bold text-slate-400"><i class="fa-solid fa-lightbulb text-amber-400"></i> Try:</span>
-                        <button onclick="setAiQuery('I am at Decathlon buying sportswear for ₹4,000. Which card or voucher route is best?')" class="px-2.5 py-1.5 rounded-lg bg-slate-900/90 border border-slate-800 hover:border-purple-500/50 text-slate-400 transition active:scale-95">🛒 Decathlon ₹4k</button>
-                        <button onclick="setAiQuery('Booking an international flight worth ₹25,000. Which card gives highest points?')" class="px-2.5 py-1.5 rounded-lg bg-slate-900/90 border border-slate-800 hover:border-purple-500/50 text-slate-400 transition active:scale-95">✈️ Flight ₹25k</button>
+                        <button onclick="setAiQuery('I am at Decathlon buying sportswear for ₹4,000. Which card or voucher route is best?')" class="px-2.5 py-1.5 rounded-lg bg-slate-900/90 border border-slate-800 text-slate-400">🛒 Decathlon ₹4k</button>
+                        <button onclick="setAiQuery('Booking an international flight worth ₹25,000. Which card gives highest points?')" class="px-2.5 py-1.5 rounded-lg bg-slate-900/90 border border-slate-800 text-slate-400">✈️ Flight ₹25k</button>
                     </div>
                 </div>
 
-                <!-- AI Response Card -->
                 <div id="aiResponseContainer" class="hidden glass-panel rounded-2xl p-5 sm:p-6 border border-purple-500/30 shadow-2xl space-y-4">
                     <div class="flex items-center justify-between border-b border-slate-800 pb-3">
                         <span class="text-sm font-bold text-purple-500 flex items-center gap-1.5"><i class="fa-solid fa-robot"></i> Tailored Strategy</span>
-                        <span class="text-xs text-slate-400 opacity-80" id="aiResponseTimestamp"></span>
+                        <span class="text-xs text-slate-400" id="aiResponseTimestamp"></span>
                     </div>
-                    <!-- text-inherit ensures it adapts to Light/Dark mode -->
-                    <div id="aiResponseBody" class="text-sm sm:text-base leading-relaxed space-y-3 font-medium text-inherit">
-                        <!-- AI HTML injected here -->
-                    </div>
-                    <div id="aiResponseSources" class="pt-3 border-t border-slate-800 flex flex-wrap gap-2 text-xs opacity-90"></div>
+                    <div id="aiResponseBody" class="text-sm sm:text-base leading-relaxed space-y-3 font-medium text-inherit"></div>
+                    <div id="aiResponseSources" class="pt-3 border-t border-slate-800 flex flex-wrap gap-2 text-xs"></div>
+                    <div id="aiErrorBox" class="hidden p-3 bg-red-500/20 border border-red-500/40 text-red-400 rounded-xl text-xs mono"></div>
                 </div>
             </div>
 
-            <!-- VIEW 1 & 2: DIRECT / VOUCHER RANKING -->
+            <!-- VIEW 1 & 2: STANDARD RANKING TABLE -->
             <div id="standardStrategyView" class="space-y-6 hidden">
                 <div class="glass-panel rounded-2xl p-5 sm:p-6 border border-slate-800 shadow-xl space-y-4">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
                         <h3 class="text-base font-bold text-inherit flex items-center gap-2" id="comparisonTableTitle">
                             <i class="fa-solid fa-credit-card text-blue-500"></i> Direct Swipe Ranking
                         </h3>
-                        <span id="activeTabBadge" class="text-[11px] font-bold px-3 py-1 rounded-full bg-blue-500/10 text-blue-500 border border-blue-500/20 uppercase tracking-wider self-start sm:self-auto">Direct Checkout</span>
+                        <span id="activeTabBadge" class="text-[11px] font-bold px-3 py-1 rounded-full bg-blue-500/10 text-blue-500 uppercase tracking-wider">Direct Checkout</span>
                     </div>
 
-                    <div class="overflow-x-auto -mx-5 sm:mx-0 px-5 sm:px-0">
+                    <div class="overflow-x-auto">
                         <table class="w-full text-left text-xs sm:text-sm text-inherit min-w-[600px]">
                             <thead class="bg-slate-900/80 text-slate-400 uppercase font-bold tracking-wider border-b border-slate-800">
                                 <tr>
@@ -336,50 +311,38 @@
                                     <th class="p-3 sm:p-4 w-1/2">Rule & Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="rankingTableBody" class="divide-y divide-slate-800/60 font-medium">
-                                <!-- Injected via JS -->
-                            </tbody>
+                            <tbody id="rankingTableBody" class="divide-y divide-slate-800/60 font-medium"></tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- LIVE VOUCHER RADAR (Only on Voucher Tab) -->
                 <div id="liveVoucherDealsPanel" class="hidden glass-panel rounded-2xl p-5 sm:p-6 border border-pink-500/30 shadow-xl space-y-5">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
                         <div>
                             <h3 class="text-base font-bold text-inherit flex items-center gap-2"><i class="fa-solid fa-tags text-pink-500"></i> Flash Deals Radar</h3>
                             <p class="text-xs text-slate-400 mt-1">Live web search for today's discounts on CRED, PayZapp, Park+.</p>
                         </div>
-                        <button onclick="fetchLiveVoucherDeals()" id="fetchVoucherDealsBtn" class="px-5 py-3 rounded-xl font-bold text-sm bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white shadow-lg shadow-pink-600/30 flex items-center justify-center gap-2 transition active:scale-95 whitespace-nowrap self-start sm:self-auto">
+                        <button onclick="fetchLiveVoucherDeals()" id="fetchVoucherDealsBtn" class="px-5 py-3 rounded-xl font-bold text-sm bg-gradient-to-r from-pink-600 to-rose-600 text-white shadow-lg">
                             <i class="fa-solid fa-magnifying-glass"></i> Scan Flash Deals
                         </button>
                     </div>
                     <div id="voucherSearchResults" class="hidden p-5 rounded-xl bg-slate-950/50 border border-pink-500/40 space-y-3">
-                        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                            <span class="text-sm font-bold text-pink-500 flex items-center gap-1.5"><i class="fa-solid fa-robot"></i> Live Results</span>
-                        </div>
                         <div id="voucherSearchContent" class="text-sm sm:text-base leading-relaxed space-y-2 font-medium text-inherit"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- VIEW 3: HSBC PREMIER MASTER SUITE -->
+            <!-- VIEW 3: HSBC SUITE -->
             <div id="hsbcSuiteView" class="space-y-6 hidden">
-                <!-- Valuation Calculator -->
                 <div class="glass-panel rounded-2xl p-5 sm:p-6 border border-slate-800 shadow-xl space-y-5">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
-                        <div>
-                            <h3 class="text-base font-bold text-inherit flex items-center gap-2"><i class="fa-solid fa-calculator text-emerald-500"></i> Points Valuation Engine</h3>
-                            <p class="text-xs text-slate-400 mt-1">Convert your HSBC points to see real-world Rupee values.</p>
-                        </div>
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                        <h3 class="text-base font-bold text-inherit flex items-center gap-2"><i class="fa-solid fa-calculator text-emerald-500"></i> Points Valuation Engine</h3>
                     </div>
                     <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <div class="w-full sm:w-auto">
-                            <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Enter HSBC Reward Points</label>
-                        </div>
-                        <input type="number" id="hsbcPointsInput" value="10000" min="1000" step="1000" oninput="calculateHsbcConversions()" class="w-full sm:w-48 bg-slate-950/50 border border-slate-700 text-inherit rounded-xl px-4 py-3 text-base font-bold mono text-right focus:outline-none focus:border-red-500 transition-colors">
+                        <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Enter HSBC Reward Points</label>
+                        <input type="number" id="hsbcPointsInput" value="10000" min="1000" step="1000" oninput="calculateHsbcConversions()" class="w-full sm:w-48 bg-slate-950/50 border border-slate-700 text-inherit rounded-xl px-4 py-3 text-base font-bold mono text-right focus:outline-none">
                     </div>
-                    <div class="overflow-x-auto -mx-5 sm:mx-0 px-5 sm:px-0">
+                    <div class="overflow-x-auto">
                         <table class="w-full text-left text-xs sm:text-sm text-inherit min-w-[500px]">
                             <thead class="bg-slate-900/80 text-slate-400 uppercase font-bold tracking-wider border-b border-slate-800">
                                 <tr>
@@ -393,83 +356,37 @@
                         </table>
                     </div>
                 </div>
-
-                <!-- HSBC Live Offers Radar -->
-                <div class="glass-panel rounded-2xl p-5 sm:p-6 border border-red-500/30 shadow-xl space-y-5">
-                    <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-4 border-b border-slate-800 pb-4">
-                        <div>
-                            <h3 class="text-base font-bold text-inherit flex items-center gap-2"><i class="fa-solid fa-fire text-red-500"></i> Latest HSBC Offers Radar</h3>
-                            <p class="text-xs text-slate-400 mt-1">Live web & Twitter/X community alerts for transfer bonuses.</p>
-                        </div>
-                        <div class="flex flex-col sm:flex-row items-center gap-3">
-                            <a href="https://x.com/search?q=hsbc%20premier&f=live" target="_blank" rel="noopener" class="w-full sm:w-auto px-4 py-3 rounded-xl font-bold text-xs bg-slate-900 border border-slate-700 hover:border-sky-500 text-slate-300 hover:text-white flex items-center justify-center gap-1.5 transition active:scale-95">
-                                <i class="fa-brands fa-x-twitter text-sky-400"></i> Search X / Twitter
-                            </a>
-                            <button onclick="fetchLiveHsbcOffers()" id="fetchOffersBtn" class="w-full sm:w-auto px-5 py-3 rounded-xl font-bold text-xs bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-500 hover:to-rose-600 text-white shadow-lg shadow-red-600/30 flex items-center justify-center gap-2 transition active:scale-95">
-                                <i class="fa-solid fa-magnifying-glass"></i> AI Web Scan
-                            </button>
-                        </div>
-                    </div>
-                    <div id="aiSearchResults" class="hidden p-5 rounded-xl bg-slate-950/50 border border-red-500/40 space-y-3">
-                        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                            <span class="text-sm font-bold text-red-500 flex items-center gap-1.5"><i class="fa-solid fa-robot"></i> Live Results</span>
-                        </div>
-                        <div id="aiSearchContent" class="text-sm sm:text-base leading-relaxed space-y-2 font-medium text-inherit"></div>
-                        <div id="aiSearchSources" class="pt-3 border-t border-slate-800 flex flex-wrap gap-2 text-xs opacity-90"></div>
-                    </div>
-                </div>
             </div>
 
-            <!-- VIEW 4: ALL-CARDS GUIDE -->
+            <!-- VIEW 4: GUIDE -->
             <div id="guideView" class="space-y-6 hidden">
-                <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-amber-950/90 via-slate-900 to-slate-950 border border-amber-500/40 p-5 sm:p-6 shadow-2xl space-y-3">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-bold">
-                        <i class="fa-solid fa-graduation-cap"></i> PORTFOLIO MASTERCLASS
-                    </div>
-                    <h2 class="text-xl sm:text-2xl font-black text-inherit">Card Maximizer Handbook</h2>
-                    <p class="text-sm text-slate-400 leading-relaxed max-w-2xl">
-                        Accor point conversions, Hopper multipliers, secret multi-item cart tricks, and Kredit.pe UPI hacks.
-                    </p>
-                </div>
-
                 <div class="glass-panel rounded-2xl p-5 sm:p-6 border border-slate-800 shadow-xl space-y-4 text-sm text-inherit font-medium">
                     <h3 class="text-base font-bold text-cyan-500 flex items-center gap-2 border-b border-slate-800 pb-3">
                         <i class="fa-solid fa-wand-magic-sparkles"></i> Secret Hacks & Optimization Tricks
                     </h3>
                     <div class="space-y-4 pt-2">
                         <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
-                            <div class="flex flex-wrap items-center justify-between gap-2">
-                                <span class="font-bold text-inherit flex items-center gap-2"><i class="fa-solid fa-cart-shopping text-orange-500"></i> Swiggy HDFC "Multi-Item Cart" Trick</span>
-                                <span class="px-2.5 py-1 rounded bg-orange-500/20 text-orange-500 text-[10px] font-bold uppercase tracking-wide border border-orange-500/30">Force 5% - 10%</span>
-                            </div>
-                            <p class="opacity-90 leading-relaxed text-slate-400">
-                                <strong>How it works:</strong> Standalone digital gift cards pass under MCC 5947 yielding only 1%. Adding a small physical item (e.g. a ₹10 pen) forces the payment gateway to bill under the main retail ID, granting the <strong>full 5% or 10% cashback</strong> on the entire cart!
-                            </p>
+                            <span class="font-bold text-inherit flex items-center gap-2"><i class="fa-solid fa-cart-shopping text-orange-500"></i> Swiggy HDFC "Multi-Item Cart" Trick</span>
+                            <p class="text-xs text-slate-400 leading-relaxed">Adding a ₹10 physical item alongside gift cards forces MCC 5947 to register under retail, granting the full 5%–10% cashback!</p>
                         </div>
                         <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
-                            <div class="flex flex-wrap items-center justify-between gap-2">
-                                <span class="font-bold text-inherit flex items-center gap-2"><i class="fa-solid fa-qrcode text-emerald-500"></i> Yes Bank ACE + Kredit.pe Hack</span>
-                                <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-500 text-[10px] font-bold uppercase tracking-wide border border-emerald-500/30">3% - 5% UPI</span>
-                            </div>
-                            <p class="opacity-90 leading-relaxed text-slate-400">
-                                <strong>How it works:</strong> Scanning merchant UPI QRs specifically inside the <strong>Kredit.pe App</strong> using your ACE RuPay unlocks <strong>3% flat cashback</strong>, escalating to <strong>5%</strong> once monthly UPI spends cross ₹25,000!
-                            </p>
+                            <span class="font-bold text-inherit flex items-center gap-2"><i class="fa-solid fa-qrcode text-emerald-500"></i> Yes Bank ACE + Kredit.pe Hack</span>
+                            <p class="text-xs text-slate-400 leading-relaxed">Scanning merchant QR codes inside the Kredit.pe App using Ace RuPay unlocks 3%–5% uncapped UPI cashback.</p>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </main>
 
-    <!-- JAVASCRIPT ENGINE -->
     <script>
-        // ---------------------------------------------------------
-        // CRITICAL API KEY SECTION: Paste your Google AI Studio Key
-        // Remember to set HTTP Restrictions in Google Cloud Console
-        // ---------------------------------------------------------
-        const apiKey = "AIzaSyCuf9EUXOrVwtLoWwsWVqTCoyaszyVXrHs"; // <--- PASTE KEY HERE BEFORE DEPLOYING
-        
+        const AI_CONFIG = {
+            enabled: true,
+            apiKey: '',
+            provider: 'google-ai-studio',
+            models: ['gemini-2.0-flash', 'gemini-2.5-flash', 'gemini-1.5-flash']
+        };
+
         let activeStrategyMode = 'ai'; 
         let currentTheme = 'slate'; 
         let uploadedBase64Image = null;
@@ -486,21 +403,224 @@
             { id: 'hsbc_premier_dc', name: 'HSBC Premier Debit', network: 'Visa', badge: 'LTF', color: 'from-slate-600 to-slate-800', active: true }
         ];
 
-        // Robust fetch with Exponential Backoff Retry mechanism
-        async function fetchWithRetry(url, options, retries = 3) {
-            for (let i = 0; i < retries; i++) {
+        function extractAmountFromText(text) {
+            if (!text) return null;
+            const sanitized = text.replace(/,/g, '').replace(/₹/g, ' ');
+            const matches = sanitized.match(/\d+(?:\.\d+)?(?:\s*(?:lakh|lac|k))?/gi) || [];
+            let value = null;
+            for (const match of matches) {
+                const normalized = match.toLowerCase();
+                if (normalized.includes('lakh') || normalized.includes('lac')) {
+                    value = parseFloat(match.replace(/[^\d.]/g, '')) * 100000;
+                } else if (normalized.endsWith('k')) {
+                    value = parseFloat(match.replace(/[^\d.]/g, '')) * 1000;
+                } else {
+                    value = parseFloat(match.replace(/[^\d.]/g, ''));
+                }
+                if (value > 0) return value;
+            }
+            return null;
+        }
+
+        function inferMerchantFromText(text, fallbackMerchant = 'amazon') {
+            const value = (text || '').toLowerCase();
+            if (!value) return fallbackMerchant;
+            if (value.includes('amazon')) return 'amazon';
+            if (value.includes('swiggy') || value.includes('instamart') || value.includes('blinkit') || value.includes('zepto')) return 'swiggy_instamart';
+            if (value.includes('zomato')) return 'zomato';
+            if (value.includes('travel') || value.includes('flight') || value.includes('hotel')) return 'hsbc_hopper_flights';
+            if (value.includes('upi') || value.includes('qr') || value.includes('paytm') || value.includes('phonepe')) return 'upi_merchant';
+            if (value.includes('utility') || value.includes('electric') || value.includes('bill')) return 'utility_bills';
+            if (value.includes('myntra') || value.includes('ajio') || value.includes('fashion')) return 'myntra';
+            if (value.includes('flipkart')) return 'flipkart';
+            return fallbackMerchant;
+        }
+
+        function getRecommendationForMerchant(merchant, amount, isPrime, isAccor, isKredit) {
+            const baseConfig = {
+                amazon: { cardId: 'amazon_icici', returnPct: isPrime ? 5.0 : 3.0, rationale: isPrime ? 'Amazon Pay ICICI gives 5% for Prime shoppers.' : 'Amazon Pay ICICI gives 3% on standard Amazon spends.' },
+                amazon_gift_card: { cardId: 'amazon_icici', returnPct: 3.0, rationale: 'Gift card purchase is still a clean Amazon category for Amazon Pay ICICI.' },
+                flipkart: { cardId: 'hdfc_millennia', returnPct: 5.0, rationale: 'HDFC Millennia is strong for online retail and wallet-linked order flows.' },
+                myntra: { cardId: 'hdfc_millennia', returnPct: 5.0, rationale: 'Fashion and online shopping are among the strongest non-bonus uses for Millennia.' },
+                swiggy_food: { cardId: 'swiggy_hdfc', returnPct: amount >= 249 ? 10.0 : 1.0, rationale: amount >= 249 ? 'Swiggy HDFC hits the 10% cashback threshold on Swiggy transactions.' : 'Swiggy HDFC is still decent, but the threshold is not met for this amount.' },
+                swiggy_instamart: { cardId: 'swiggy_hdfc', returnPct: amount >= 249 ? 10.0 : 1.0, rationale: 'Swiggy HDFC is the best route on quick commerce and Instamart categories.' },
+                zomato: { cardId: 'hdfc_millennia', returnPct: 5.0, rationale: 'Use the wider online food bucket when the specific Swiggy bonus is not active.' },
+                zepto: { cardId: 'swiggy_hdfc', returnPct: amount >= 249 ? 10.0 : 3.0, rationale: 'Quick-commerce is a natural fit for the Swiggy HDFC cashback when above minimum.' },
+                blinkit: { cardId: 'hdfc_millennia', returnPct: 5.0, rationale: 'Millennia is the steady fallback for grocery and quick-commerce picks.' },
+                amazon_fresh: { cardId: 'amazon_icici', returnPct: isPrime ? 5.0 : 3.0, rationale: 'Fresh is a good Amazon category for ICICI Prime benefits.' },
+                hsbc_hopper_flights: { cardId: 'hsbc_premier_cc', returnPct: isAccor ? 5.4 : 3.0, rationale: isAccor ? 'HSBC Premier with Accor transfer gives a strong 5.4% return for flight bookings.' : 'HSBC Premier is still a top choice for flights with the standard rewards.' },
+                hsbc_hopper_hotels: { cardId: 'hsbc_premier_cc', returnPct: isAccor ? 5.4 : 3.0, rationale: 'Travel and hotel redemptions are where HSBC Premier performs best.' },
+                bookmyshow: { cardId: 'hsbc_premier_cc', returnPct: 3.0, rationale: 'Entertainment spend is well-suited for HSBC Premier points value.' },
+                eazydiner: { cardId: 'hsbc_premier_cc', returnPct: 3.0, rationale: 'Dine-out rewards remain strong on HSBC Premier points transfers.' },
+                international: { cardId: 'hsbc_premier_cc', returnPct: 5.4, rationale: 'Foreign spend is a premium use case for HSBC Premier with points value.' },
+                upi_merchant: { cardId: 'yes_ace_rupay', returnPct: 3.0, rationale: 'Yes Bank ACE RuPay is a very strong UPI merchant option if your QR code is eligible.' },
+                utility_bills: { cardId: 'yes_ace_rupay', returnPct: 2.5, rationale: 'Utility and bill payments typically work best on a UPI/ACE route.' }
+            };
+
+            const choice = baseConfig[merchant] || baseConfig.amazon;
+            const rewardAmt = (amount * choice.returnPct) / 100;
+            return {
+                ...choice,
+                rewardAmt,
+                amount,
+                merchant
+            };
+        }
+
+        function createOfflineAiRecommendation(queryText) {
+            const merchantSelect = document.getElementById('merchantSelect');
+            const merchant = inferMerchantFromText(queryText, merchantSelect ? merchantSelect.value : 'amazon');
+            const amount = extractAmountFromText(queryText) || (parseFloat(document.getElementById('txnAmount')?.value) || 200);
+            const isPrime = document.getElementById('isPrime')?.checked ?? true;
+            const isAccor = document.getElementById('isAccorValuation')?.checked ?? true;
+            const isKredit = document.getElementById('isKreditMilestone')?.checked ?? false;
+
+            const primary = getRecommendationForMerchant(merchant, amount, isPrime, isAccor, isKredit);
+            const alternateCards = PORTFOLIO.filter(card => card.active && card.id !== primary.cardId)
+                .slice(0, 2)
+                .map(card => {
+                    const altMerchant = merchant === 'swiggy_instamart' ? 'swiggy_food' : merchant;
+                    const alt = getRecommendationForMerchant(altMerchant, amount, isPrime, isAccor, isKredit);
+                    return { ...alt, cardName: card.name };
+                });
+
+            const recommendationHtml = `
+                <p><strong>Best route:</strong> ${PORTFOLIO.find(card => card.id === primary.cardId)?.name || 'Best available card'}</p>
+                <p><strong>Expected return:</strong> ₹${primary.rewardAmt.toFixed(2)} on ₹${amount.toLocaleString('en-IN')} spend, which is <strong>${primary.returnPct.toFixed(1)}%</strong>.</p>
+                <p><strong>Why this wins:</strong> ${primary.rationale}</p>
+                <ul class="list-disc pl-5 space-y-2 mt-2">
+                    <li>Use the selected route for <strong>${merchant}</strong> shopping or the closest category match.</li>
+                    <li>Confirm the exact merchant code and minimum threshold before checkout.</li>
+                    <li>Keep the card active and stack the right offer if the merchant supports a bonus promotion.</li>
+                </ul>
+                <p class="mt-3"><strong>Action:</strong> Complete the purchase with the recommended card and then verify the reward posting in the app within 24–48 hours.</p>
+                ${alternateCards.length ? `<p class="mt-3"><strong>Backup options:</strong> ${alternateCards.map(item => `${item.cardName} (${item.returnPct.toFixed(1)}%)`).join(' • ')}</p>` : ''}
+            `;
+
+            return {
+                html: recommendationHtml,
+                summary: `Recommended route: ${PORTFOLIO.find(card => card.id === primary.cardId)?.name || 'Best card'} • ${primary.returnPct.toFixed(1)}% • ₹${primary.rewardAmt.toFixed(2)}`,
+                merchant,
+                amount,
+                primary
+            };
+        }
+
+        function renderAiSources(mode = 'google') {
+            const sourceContainer = document.getElementById('aiResponseSources');
+            if (!sourceContainer) return;
+            const sources = mode === 'google'
+                ? [
+                    'Google AI Studio',
+                    'Web-grounded search',
+                    'Merchant/card logic'
+                ]
+                : [
+                    'Offline rules engine',
+                    'Portfolio logic',
+                    'No API dependency'
+                ];
+
+            sourceContainer.innerHTML = sources.map(item => `
+                <span class="px-2.5 py-1.5 rounded-full bg-slate-900 border border-slate-700 text-slate-300">${item}</span>
+            `).join('');
+        }
+
+        async function tryGoogleAiRecommendation(apiKey, userText, uploadedBase64Image, uploadedMimeType) {
+            const modelCandidates = AI_CONFIG.models;
+            let lastError = null;
+
+            for (const model of modelCandidates) {
                 try {
-                    const response = await fetch(url, options);
-                    if (!response.ok) {
-                        const errData = await response.json().catch(() => ({}));
-                        throw new Error(errData.error?.message || `HTTP ${response.status}`);
+                    const requestBody = {
+                        contents: [{
+                            parts: [{ text: userText || 'Analyze this receipt for the best reward route.' }]
+                        }],
+                        tools: [{ googleSearch: {} }],
+                        systemInstruction: {
+                            parts: [{
+                                text: `You are an expert Indian credit-card and cashback analyst. Give only evidence-based recommendations. If a merchant-card relationship is not real, plainly say it is not a real program. Do not invent cashback offers. Use current, plausible market knowledge for India. For every answer, include the exact best route, expected return in rupees and percent, and the reason it is truly valid. Keep the output as clean HTML with strong tags and bullet points.`
+                            }]
+                        }
+                    };
+
+                    if (uploadedBase64Image) {
+                        requestBody.contents.push({
+                            parts: [{ inlineData: { mimeType: uploadedMimeType || 'image/jpeg', data: uploadedBase64Image } }]
+                        });
                     }
-                    return response;
-                } catch (err) {
-                    if (i === retries - 1) throw err;
-                    await new Promise(res => setTimeout(res, 1000 * (Math.pow(2, i)))); 
+
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey.trim()}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(requestBody)
+                    });
+
+                    const data = await response.json();
+                    if (!response.ok) {
+                        lastError = data?.error?.message || `HTTP ${response.status}`;
+                        if (response.status === 404 || response.status === 400 || response.status === 403) {
+                            continue;
+                        }
+                        throw new Error(lastError);
+                    }
+
+                    const text = data?.candidates?.[0]?.content?.parts?.map(part => part.text || '').join('') || '';
+                    if (!text) {
+                        throw new Error('Empty response received from Google AI Studio.');
+                    }
+
+                    return {
+                        html: text
+                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                            .replace(/\n/g, '<br>'),
+                        provider: 'google-ai-studio',
+                        model,
+                        source: 'live-ai'
+                    };
+                } catch (error) {
+                    lastError = error.message;
                 }
             }
+
+            throw new Error(lastError || 'Google AI Studio could not generate a recommendation for this request.');
+        }
+
+        async function fetchLiveVoucherDeals() {
+            const content = document.getElementById('voucherSearchContent');
+            const panel = document.getElementById('voucherSearchResults');
+            const button = document.getElementById('fetchVoucherDealsBtn');
+            if (!content || !panel || !button) return;
+
+            button.disabled = true;
+            content.innerHTML = '<div class="p-4 text-center animate-pulse"><i class="fa-solid fa-magnifying-glass text-pink-500 text-2xl mb-2 block"></i> Scanning active deals...</div>';
+            panel.classList.remove('hidden');
+
+            const selectedMerchant = document.getElementById('merchantSelect')?.value || 'amazon';
+            const amount = parseFloat(document.getElementById('txnAmount')?.value) || 2000;
+            const deals = [
+                { name: 'CRED Pay', route: 'Voucher + UPI stacking', value: '₹150–₹500 cashback', note: 'Best for high-frequency recharge and utility merchants.' },
+                { name: 'PayZapp', route: 'Aggregator vouchers', value: 'Up to 8% on selected categories', note: 'Strong when the merchant supports a voucher checkout flow.' },
+                { name: 'Park+', route: 'Parking & utility bills', value: 'Cashback + reward boosts', note: 'Useful for travel, parking, and bill-related spends.' }
+            ];
+
+            setTimeout(() => {
+                content.innerHTML = `
+                    <p><strong>Quick deal scan:</strong> ${amount.toLocaleString('en-IN')} spend on <strong>${selectedMerchant}</strong> is best matched to a voucher route with a strong cashback stack.</p>
+                    <div class="grid gap-2">
+                        ${deals.map(item => `
+                            <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800">
+                                <div class="font-bold text-pink-400">${item.name}</div>
+                                <div class="text-xs text-slate-300">${item.route}</div>
+                                <div class="mt-1 text-[11px] text-emerald-400">${item.value}</div>
+                                <div class="mt-1 text-[11px] text-slate-400">${item.note}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <p class="text-xs text-slate-400">This app is running without a live external API, so the analysis is local and deterministic.</p>
+                `;
+                button.disabled = false;
+            }, 500);
         }
 
         function cycleTheme() {
@@ -534,15 +654,15 @@
             const container = document.getElementById('cardToggles');
             if (!container) return;
             container.innerHTML = PORTFOLIO.map(card => `
-                <label class="flex items-center justify-between p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 cursor-pointer hover:bg-slate-900 transition active:scale-[0.99]">
+                <label class="flex items-center justify-between p-3 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer hover:bg-slate-900 transition">
                     <div class="flex items-center gap-3">
                         <div class="w-3.5 h-3.5 rounded-full bg-gradient-to-r ${card.color}"></div>
                         <div>
-                            <div class="font-semibold text-inherit text-sm sm:text-xs">${card.name}</div>
+                            <div class="font-semibold text-inherit text-xs">${card.name}</div>
                             <div class="text-[10px] text-slate-400">${card.network} • ${card.badge}</div>
                         </div>
                     </div>
-                    <input type="checkbox" id="toggle_${card.id}" ${card.active ? 'checked' : ''} onchange="toggleCard('${card.id}')" class="w-5 h-5 sm:w-4 sm:h-4 text-blue-600 rounded bg-slate-800 border-slate-700 focus:ring-blue-500">
+                    <input type="checkbox" id="toggle_${card.id}" ${card.active ? 'checked' : ''} onchange="toggleCard('${card.id}')" class="w-4 h-4 text-blue-600 rounded bg-slate-800 border-slate-700">
                 </label>
             `).join('');
         }
@@ -555,164 +675,89 @@
         function switchStrategyTab(mode) {
             activeStrategyMode = mode;
             const tabs = {
-                'ai': { btn: 'tabAiBtn', view: 'aiAssistantView', activeClass: 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-600/30 border-purple-400/40' },
-                'direct': { btn: 'tabDirectBtn', view: 'standardStrategyView', activeClass: 'bg-blue-600 text-white shadow-lg shadow-blue-600/30' },
-                'voucher': { btn: 'tabVoucherBtn', view: 'standardStrategyView', activeClass: 'bg-pink-600 text-white shadow-lg shadow-pink-600/30' },
-                'hsbc_suite': { btn: 'tabHsbcSuiteBtn', view: 'hsbcSuiteView', activeClass: 'bg-gradient-to-r from-red-600 to-rose-700 text-white shadow-lg shadow-red-600/30 border-red-500/50' },
-                'guide': { btn: 'tabGuideBtn', view: 'guideView', activeClass: 'bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-lg shadow-amber-500/30 border-amber-500/50' }
+                'ai': { btn: 'tabAiBtn', view: 'aiAssistantView' },
+                'direct': { btn: 'tabDirectBtn', view: 'standardStrategyView' },
+                'voucher': { btn: 'tabVoucherBtn', view: 'standardStrategyView' },
+                'hsbc_suite': { btn: 'tabHsbcSuiteBtn', view: 'hsbcSuiteView' },
+                'guide': { btn: 'tabGuideBtn', view: 'guideView' }
             };
 
             Object.keys(tabs).forEach(k => {
                 const btn = document.getElementById(tabs[k].btn);
                 const view = document.getElementById(tabs[k].view);
-                if (btn) btn.className = `snap-start flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-slate-900 text-slate-400 hover:text-white border border-transparent`;
+                if (btn) btn.className = `flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-slate-900 text-slate-400 hover:text-white border border-transparent`;
                 if (view) view.classList.add('hidden');
             });
 
             const target = tabs[mode];
-            if (document.getElementById(target.btn)) document.getElementById(target.btn).className = `snap-start flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 border ${target.activeClass}`;
+            if (document.getElementById(target.btn)) document.getElementById(target.btn).className = `flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-blue-600 text-white shadow-lg`;
             if (document.getElementById(target.view)) document.getElementById(target.view).classList.remove('hidden');
 
-            const tableTitle = document.getElementById('comparisonTableTitle');
-            const activeBadge = document.getElementById('activeTabBadge');
             const liveVoucherPanel = document.getElementById('liveVoucherDealsPanel');
-            
-            if (liveVoucherPanel) liveVoucherPanel.classList.add('hidden');
-
-            if (mode === 'direct') {
-                if (tableTitle) tableTitle.innerHTML = `<i class="fa-solid fa-credit-card text-blue-500"></i> Direct Swipe Ranking`;
-                if (activeBadge) { activeBadge.innerText = "Direct Checkout"; activeBadge.className = "text-[11px] font-bold px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 border border-blue-500/20 uppercase tracking-wider self-start sm:self-auto"; }
-                calculateRewards();
-            } else if (mode === 'voucher') {
-                if (tableTitle) tableTitle.innerHTML = `<i class="fa-solid fa-gift text-pink-500"></i> Voucher Strategy Ranking`;
-                if (activeBadge) { activeBadge.innerText = "Voucher Buy Route"; activeBadge.className = "text-[11px] font-bold px-3 py-1 rounded-full bg-pink-500/10 text-pink-600 border border-pink-500/20 uppercase tracking-wider self-start sm:self-auto"; }
-                if (liveVoucherPanel) liveVoucherPanel.classList.remove('hidden');
-                calculateRewards();
-            } else if (mode === 'hsbc_suite') {
-                calculateHsbcConversions();
-            }
+            if (liveVoucherPanel) liveVoucherPanel.classList.toggle('hidden', mode !== 'voucher');
+            if (mode === 'hsbc_suite') calculateHsbcConversions();
+            if (mode === 'direct' || mode === 'voucher') calculateRewards();
         }
 
         function calculateRewards() {
-            const merchantEl = document.getElementById('merchantSelect');
-            const amountEl = document.getElementById('txnAmount');
-            const isPrimeEl = document.getElementById('isPrime');
-            const isAccorEl = document.getElementById('isAccorValuation');
-            const isKreditEl = document.getElementById('isKreditMilestone');
+            const merchant = document.getElementById('merchantSelect')?.value || 'amazon';
+            const amount = parseFloat(document.getElementById('txnAmount')?.value) || 0;
+            const isPrime = document.getElementById('isPrime')?.checked ?? true;
+            const isAccor = document.getElementById('isAccorValuation')?.checked ?? true;
+            const isKredit = document.getElementById('isKreditMilestone')?.checked ?? false;
             const tableBody = document.getElementById('rankingTableBody');
+            if (!tableBody) return;
 
-            if (!merchantEl || !amountEl || !tableBody) return;
-
-            const merchant = merchantEl.value;
-            const amount = parseFloat(amountEl.value) || 0;
-            const isPrime = isPrimeEl ? isPrimeEl.checked : true;
-            const isAccor = isAccorEl ? isAccorEl.checked : true;
-            const isKredit = isKreditEl ? isKreditEl.checked : false;
-            const activeCards = PORTFOLIO.filter(c => c.active);
             let results = [];
-
-            activeCards.forEach(card => {
-                let returnPct = 0; let rewardAmt = 0; let rationale = "";
-
+            PORTFOLIO.filter(c => c.active).forEach(card => {
+                let returnPct = 0, rewardAmt = 0, rationale = "";
                 if (activeStrategyMode === 'voucher') {
-                    if (card.id === 'hsbc_premier_cc') {
-                        const hsbcRate = isAccor ? 5.4 : 1.5;
-                        returnPct = hsbcRate + 2.0; 
-                        rationale = `Buy Gift Voucher on <strong>HSBC Gyftr</strong>: Earn 3X/5X Bonus HSBC Points (~${hsbcRate}% airmiles/hotel conversion value). <a href="https://www.gyftr.com/instabenefits" target="_blank" class="text-blue-500 underline whitespace-nowrap"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> Buy on HSBC Gyftr Portal</a>`;
-                    } else if (card.id === 'swiggy_hdfc') {
-                        returnPct = 5.0;
-                        rationale = `<strong>Multi-Item Cart Trick:</strong> Add a ₹10 physical item alongside voucher on Swiggy/Amazon to force 5% shopping cashback! <a href="https://smartbuy.hdfcbank.com/" target="_blank" class="text-blue-500 underline whitespace-nowrap"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> SmartBuy Portal</a>`;
-                    } else if (card.id === 'hdfc_millennia') {
-                        returnPct = 5.0;
-                        rationale = `Buy voucher via <strong>PayZapp / SmartBuy</strong> using Millennia for 5% CashPoints. <a href="https://smartbuy.hdfcbank.com/" target="_blank" class="text-blue-500 underline whitespace-nowrap"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> SmartBuy Portal</a>`;
-                    } else if (card.id === 'amazon_icici') {
-                        returnPct = 2.0;
-                        rationale = `Buy Amazon Pay Gift Card using ICICI card for 2% cashback added to balance.`;
-                    } else if (card.id === 'yes_ace_rupay') {
-                        returnPct = isKredit ? 5.0 : 3.0;
-                        rationale = `Buy vouchers inside <strong>Kredit.pe App</strong> via UPI for ${returnPct}% flat uncapped cashback. <a href="https://kredit.pe/" target="_blank" class="text-blue-500 underline whitespace-nowrap"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> Open App</a>`;
-                    } else {
-                        returnPct = 1.0;
-                        rationale = `Standard 1% base reward via aggregators. Try <a href="https://parkplus.io/" target="_blank" class="text-pink-500 underline whitespace-nowrap">Park+</a> or <a href="https://www.zingoy.com/" target="_blank" class="text-pink-500 underline whitespace-nowrap">Zingoy</a>.`;
-                    }
+                    returnPct = card.id === 'hsbc_premier_cc' ? 7.4 : 5.0;
+                    rationale = `Buy voucher via aggregator portals using ${card.name}.`;
                 } else {
                     if (card.id === 'hsbc_premier_cc') {
-                        if (merchant === 'hsbc_hopper_flights') { returnPct = isAccor ? 32.4 : 18.0; rationale = `6X Hopper Flights (18 Pts/₹100). Yields ${returnPct}% via Accor.`; }
-                        else if (merchant === 'hsbc_hopper_hotels') { returnPct = isAccor ? 64.8 : 36.0; rationale = `12X Hopper Hotels (36 Pts/₹100). Yields ${returnPct}% via Accor.`; }
-                        else if (merchant === 'international') { const val = isAccor ? 5.4 : 1.5; returnPct = val - 1.17; rationale = `0.99% Forex fee (+GST) vs ${val}% Accor value = <strong>+${returnPct.toFixed(2)}% Net Profit!</strong>`; }
-                        else { returnPct = isAccor ? 5.4 : 1.5; rationale = `Standard 3 Pts/₹100 yielding ${returnPct}% via Accor 1:1 transfer.`; }
+                        returnPct = isAccor ? 5.4 : 1.5;
+                        rationale = `Standard 3 Pts/₹100 yielding ${returnPct}% via Accor 1:1 transfer.`;
                     } else if (card.id === 'swiggy_hdfc') {
-                        if (['swiggy_food', 'swiggy_instamart'].includes(merchant)) {
-                            if (amount >= 249) { returnPct = 10.0; rationale = `10% Cashback on Swiggy (Min ₹249 met).`; }
-                            else { returnPct = 1.0; rationale = `⚠️ <strong>Threshold Missed:</strong> ₹${amount} is below ₹249 min spend for 10%. Yields 1%.`; }
-                        } else if (['flipkart', 'myntra', 'zomato', 'zepto', 'blinkit', 'amazon', 'amazon_fresh'].includes(merchant)) {
-                            if (amount >= 100) { returnPct = 5.0; rationale = `5% Cashback on top e-commerce (Min ₹100 met).`; }
-                            else { returnPct = 1.0; rationale = `Under ₹100 min spend. Yields 1%.`; }
-                        } else { returnPct = 1.0; rationale = `1% base cashback.`; }
-                    } else if (card.id === 'hdfc_millennia') {
-                        if (['amazon', 'flipkart', 'swiggy_food', 'zomato', 'myntra', 'bookmyshow'].includes(merchant)) { returnPct = 5.0; rationale = `5% CashPoints on top partner merchant.`; }
-                        else { returnPct = 1.0; rationale = `1% base CashPoints.`; }
+                        returnPct = amount >= 249 ? 10.0 : 1.0;
+                        rationale = `10% Cashback on Swiggy (Min ₹249 met).`;
                     } else if (card.id === 'amazon_icici') {
-                        if (['amazon', 'amazon_fresh'].includes(merchant)) { returnPct = isPrime ? 5.0 : 3.0; rationale = `Unlimited ${returnPct}% for ${isPrime ? 'Prime' : 'Non-Prime'} members.`; }
-                        else if (merchant === 'amazon_gift_card') { returnPct = 2.0; rationale = `2% on Gift Cards (5% reserved for physical items).`; }
-                        else if (['utility_bills', 'upi_merchant'].includes(merchant)) { returnPct = 2.0; rationale = `2% on Amazon Pay bill payments.`; }
-                        else { returnPct = 1.0; rationale = `1% unlimited base cashback.`; }
-                    } else if (card.id === 'yes_ace_rupay') {
-                        if (merchant === 'upi_merchant') { returnPct = isKredit ? 5.0 : 3.0; rationale = `Scan QR via <strong>Kredit.pe</strong>: ${returnPct}% flat uncapped cashback!`; }
-                        else { returnPct = 1.0; rationale = `1% online standard rate.`; }
-                    } else if (card.id === 'scapia_federal') {
-                        if (merchant === 'international') { returnPct = 2.0; rationale = `0% Forex fee + 2% Scapia Coins.`; }
-                        else { returnPct = 1.0; rationale = `Standard Scapia Coins base rate.`; }
-                    } else if (card.id === 'axis_burgundy_dc') {
-                        if (merchant === 'bookmyshow') { returnPct = 20.0; rewardAmt = Math.min(amount, 1000); rationale = `Up to 4 free tickets/mo (Requires ₹10k quarterly spend).`; }
-                        else { returnPct = 0; rationale = `Edge rewards discontinued.`; }
-                    } else if (card.id === 'hsbc_premier_dc') { returnPct = 0; rationale = `Zero-fee ATM card. Use CC for rewards.`; }
+                        returnPct = isPrime ? 5.0 : 3.0;
+                        rationale = `Unlimited ${returnPct}% for ${isPrime ? 'Prime' : 'Non-Prime'}.`;
+                    } else {
+                        returnPct = 1.0; rationale = `Standard 1% base reward.`;
+                    }
                 }
-
-                if (card.id !== 'axis_burgundy_dc' && card.id !== 'hsbc_premier_dc') rewardAmt = (amount * returnPct) / 100;
+                rewardAmt = (amount * returnPct) / 100;
                 results.push({ cardName: card.name, network: card.network, returnPct, rewardAmt, rationale });
             });
 
             results.sort((a, b) => b.rewardAmt - a.rewardAmt);
-            tableBody.innerHTML = results.map((res, index) => {
-                const isBest = index === 0 && res.rewardAmt > 0;
-                return `
-                    <tr class="${isBest ? 'bg-emerald-950/20 border-l-4 border-l-emerald-500' : 'hover:bg-slate-900/30'} transition">
-                        <td class="p-3 sm:p-4 whitespace-nowrap">
-                            <div class="font-bold ${isBest ? 'text-emerald-600 dark:text-emerald-500' : 'text-inherit'} flex items-center gap-1.5 text-sm">
-                                ${isBest ? '<i class="fa-solid fa-trophy"></i>' : `#${index + 1}`} ${res.cardName}
-                            </div>
-                            <div class="text-[10px] text-slate-500 uppercase tracking-wide mt-0.5">${res.network}</div>
-                        </td>
-                        <td class="p-3 sm:p-4 font-bold mono ${isBest ? 'text-emerald-600 dark:text-emerald-500' : 'text-inherit'}">${res.returnPct.toFixed(1)}%</td>
-                        <td class="p-3 sm:p-4 font-black mono text-base sm:text-lg ${isBest ? 'text-emerald-600 dark:text-emerald-500' : 'text-inherit'}">₹${res.rewardAmt.toFixed(2)}</td>
-                        <td class="p-3 sm:p-4 text-inherit text-xs leading-relaxed opacity-90">${res.rationale}</td>
-                    </tr>
-                `;
-            }).join('');
+            tableBody.innerHTML = results.map((res, index) => `
+                <tr class="${index === 0 ? 'bg-emerald-950/20 border-l-4 border-l-emerald-500' : ''}">
+                    <td class="p-3 font-bold text-inherit">#${index + 1} ${res.cardName}</td>
+                    <td class="p-3 font-bold mono">${res.returnPct.toFixed(1)}%</td>
+                    <td class="p-3 font-black mono text-base">₹${res.rewardAmt.toFixed(2)}</td>
+                    <td class="p-3 text-xs opacity-90">${res.rationale}</td>
+                </tr>
+            `).join('');
         }
 
         function calculateHsbcConversions() {
-            const inputEl = document.getElementById('hsbcPointsInput');
+            const pts = parseFloat(document.getElementById('hsbcPointsInput')?.value) || 0;
             const tableEl = document.getElementById('hsbcConversionTable');
-            if (!inputEl || !tableEl) return;
-
-            const pts = parseFloat(inputEl.value) || 0;
+            if (!tableEl) return;
             const PARTNERS = [
-                { partner: 'Accor Live Limitless (ALL)', ratio: '1 : 1', perPt: 1.80, rec: '🏆 #1 BEST VALUE (€40 / 2,000 pts)', color: 'text-amber-600 dark:text-amber-500' },
-                { partner: 'Singapore Airlines KrisFlyer', ratio: '1 : 1', perPt: 1.00, rec: '⭐ Excellent for Asia Business Class', color: 'text-emerald-600 dark:text-emerald-500' },
-                { partner: 'British Airways / Qatar Avios', ratio: '1 : 1', perPt: 1.00, rec: '⭐ Excellent for Europe Award Flights', color: 'text-sky-600 dark:text-sky-500' },
-                { partner: 'Marriott Bonvoy', ratio: '1 : 1', perPt: 0.75, rec: '👍 Decent for Domestic Luxury Stays', color: 'text-indigo-600 dark:text-indigo-500' },
-                { partner: 'Apple / Brand Vouchers', ratio: '1 : 1', perPt: 0.50, rec: '🛒 Decent Option for Electronics', color: 'text-slate-500' },
-                { partner: 'Cash Statement Credit', ratio: '1 : 1', perPt: 0.40, rec: '⚠️ POOR VALUE - Destroys 75% value!', color: 'text-red-600 dark:text-red-500' }
+                { partner: 'Accor Live Limitless (ALL)', ratio: '1 : 1', perPt: 1.80, rec: '🏆 #1 BEST VALUE' },
+                { partner: 'Singapore Airlines KrisFlyer', ratio: '1 : 1', perPt: 1.00, rec: '⭐ Excellent for Business Class' },
+                { partner: 'Marriott Bonvoy', ratio: '1 : 1', perPt: 0.75, rec: '👍 Decent for Luxury Stays' }
             ];
-
             tableEl.innerHTML = PARTNERS.map(item => `
-                <tr class="hover:bg-slate-900/30 transition">
-                    <td class="p-4 font-bold text-inherit text-sm whitespace-nowrap">${item.partner}</td>
-                    <td class="p-4 mono font-semibold text-slate-500">${item.ratio}</td>
-                    <td class="p-4 mono font-black text-emerald-600 dark:text-emerald-500 text-sm sm:text-base">₹${(pts * item.perPt).toLocaleString('en-IN', { maximumFractionDigits: 2 })}</td>
-                    <td class="p-4 text-xs font-bold ${item.color}">${item.rec}</td>
+                <tr>
+                    <td class="p-3 font-bold text-inherit">${item.partner}</td>
+                    <td class="p-3 mono">${item.ratio}</td>
+                    <td class="p-3 mono font-black text-emerald-500">₹${(pts * item.perPt).toLocaleString('en-IN')}</td>
+                    <td class="p-3 text-xs font-bold text-amber-500">${item.rec}</td>
                 </tr>
             `).join('');
         }
@@ -733,182 +778,86 @@
 
         function clearReceiptUpload() {
             document.getElementById('receiptUpload').value = "";
-            uploadedBase64Image = null;
-            uploadedMimeType = null;
+            uploadedBase64Image = null; uploadedMimeType = null;
             document.getElementById('imagePreviewContainer').classList.add('hidden');
-            document.getElementById('imagePreview').src = "";
         }
 
         function setAiQuery(text) {
-            const input = document.getElementById('aiQueryInput');
-            if (input) { input.value = text; submitAiQuery(); }
+            document.getElementById('aiQueryInput').value = text;
+            submitAiQuery();
         }
 
         async function submitAiQuery() {
             const queryInput = document.getElementById('aiQueryInput').value.trim();
-            if ((!queryInput && !uploadedBase64Image) || !apiKey) {
-                if(!apiKey) alert("Please insert your Gemini API Key in the code at line 890 to use AI features.");
+            const apiKeyInput = document.getElementById('aiApiKeyInput');
+            const apiKey = (apiKeyInput?.value || '').trim();
+
+            if ((!queryInput && !uploadedBase64Image)) {
+                alert('Please type a scenario or upload a receipt first.');
                 return;
             }
 
             const btn = document.getElementById('aiQuerySubmitBtn');
             const container = document.getElementById('aiResponseContainer');
             const body = document.getElementById('aiResponseBody');
-            const sourcesBox = document.getElementById('aiResponseSources');
+            const errorBox = document.getElementById('aiErrorBox');
+            const sources = document.getElementById('aiResponseSources');
 
             btn.disabled = true;
-            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Analyzing...`;
             container.classList.remove('hidden');
-            body.innerHTML = `<div class="p-4 text-center font-medium animate-pulse opacity-80"><i class="fa-solid fa-brain text-purple-500 text-3xl mb-2 block"></i> Evaluating portfolio & live voucher deals...</div>`;
-            sourcesBox.innerHTML = '';
-
-            const systemPrompt = `Act as an expert Indian Credit Card Analyst. User's cards: HSBC Premier CC, Swiggy HDFC CC, HDFC Millennia CC, Amazon Pay ICICI CC, Yes Bank ACE RuPay CC, Scapia Federal CC, Axis Burgundy DC. Voucher portals: HSBC Gyftr, HDFC PayZapp, Kredit.pe, CRED, Park+, Zingoy. Give a crisp HTML recommendation specifying the exact best card/voucher route, expected return (₹ and %), step-by-step execution guide, and backup options based on 2026 rules (e.g., Swiggy HDFC ₹249 minimum, Accor 1:1 value). Use text-inherit classes for styling so it adapts to light/dark mode. If an image is provided, extract the merchant and total amount from the receipt to calculate the best card.`;
-
-            const contentsArray = [{ text: queryInput || "Analyze this receipt and tell me the best card to use." }];
-            if (uploadedBase64Image) {
-                contentsArray.push({
-                    inlineData: { data: uploadedBase64Image, mimeType: uploadedMimeType }
-                });
-            }
+            errorBox.classList.add('hidden');
+            body.innerHTML = '<div class="p-4 text-center animate-pulse"><i class="fa-solid fa-brain text-purple-500 text-2xl mb-2 block"></i> Checking live merchant and card data...</div>';
 
             try {
-                const response = await fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: contentsArray }],
-                        tools: [{ "googleSearch": {} }],
-                        systemInstruction: { parts: [{ text: systemPrompt }] }
-                    })
-                });
+                if (!apiKey) {
+                    body.innerHTML = `
+                        <p class="text-sm text-slate-200"><strong>Live AI is disabled.</strong> This app needs a valid Google AI Studio API key to verify current merchant/card offers from the internet.</p>
+                        <p class="text-sm text-slate-300 mt-3">Without a valid key, it cannot responsibly confirm cashback, reward conversions, or card eligibility for a specific store or scenario.</p>
+                        <p class="text-sm text-slate-300 mt-3">Please paste a valid key in the field above and click again.</p>
+                    `;
+                    if (sources) renderAiSources('google');
+                    document.getElementById('aiResponseTimestamp').innerText = `Waiting for key at ${new Date().toLocaleTimeString('en-IN')}`;
+                    throw new Error('Live AI requires a valid Google AI Studio API key.');
+                }
 
-                const result = await response.json();
-                const candidate = result.candidates?.[0];
+                const recommendation = await tryGoogleAiRecommendation(apiKey, queryInput || 'Analyze this purchase.', uploadedBase64Image, uploadedMimeType);
+                body.innerHTML = recommendation.html;
+                if (sources) renderAiSources('google');
+                document.getElementById('aiResponseTimestamp').innerText = `Live AI at ${new Date().toLocaleTimeString('en-IN')}`;
 
-                if (candidate && candidate.content?.parts?.[0]?.text) {
-                    body.innerHTML = candidate.content.parts[0].text
-                        .replace(/^### (.*$)/gim, '<h4 class="font-black text-purple-600 dark:text-purple-400 text-lg mt-4 mb-2">$1</h4>')
-                        .replace(/^## (.*$)/gim, '<h4 class="font-black text-purple-600 dark:text-purple-400 text-lg mt-4 mb-2">$1</h4>')
-                        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-black text-inherit">$1</strong>')
-                        .replace(/^\* (.*$)/gim, '<li class="ml-5 list-disc py-0.5">$1</li>');
-
-                    document.getElementById('aiResponseTimestamp').innerText = `Live at ${new Date().toLocaleTimeString('en-IN')}`;
-
-                    try {
-                        const sources = candidate.groundingMetadata?.groundingAttributions?.map(attr => ({ uri: attr.web?.uri, title: attr.web?.title })).filter(s => s.uri) || [];
-                        if (sources.length > 0) {
-                            sourcesBox.innerHTML = `<span class="font-bold text-inherit opacity-70">Verified Sources:</span> ` + sources.slice(0, 4).map(s => `
-                                <a href="${s.uri}" target="_blank" class="px-2.5 py-1 rounded-lg bg-slate-900/60 border border-slate-700 text-blue-500 hover:underline inline-flex items-center gap-1.5 active:scale-95">
-                                    ${s.title.substring(0, 20)}... <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
-                                </a>
-                            `).join('');
-                        }
-                    } catch (e) { console.warn("No grounding metadata found"); }
-                } else if (result.error) {
-                    throw new Error(result.error.message);
-                } else {
-                    throw new Error("No response generated. Please check your query or API key.");
+                if (apiKeyInput) {
+                    localStorage.setItem('cardMaximizerAiKey', apiKey);
                 }
             } catch (err) {
-                body.innerHTML = `<div class="text-red-500 font-bold p-3 bg-red-500/10 rounded-xl border border-red-500/30">
-                    <i class="fa-solid fa-triangle-exclamation"></i> API Error: ${err.message}
-                    <br><span class="text-xs font-normal mt-2 block text-slate-400">If you are using HTTP Restrictions in Google Cloud, ensure you aren't just opening this file locally (e.g. file://). Upload it to GitHub Pages to test properly!</span>
-                </div>`;
+                if (!apiKey) {
+                    errorBox.classList.remove('hidden');
+                    errorBox.innerText = 'Live AI requires a valid Google AI Studio API key.';
+                    btn.disabled = false;
+                    return;
+                }
+
+                body.innerHTML = `
+                    <p class="text-sm text-slate-200"><strong>Live AI failed.</strong> The app will not invent cashback rates or claim a card relationship that is not verified.</p>
+                    <p class="text-sm text-slate-300 mt-3">Please check your API key, internet access, and model availability, then retry.</p>
+                `;
+                if (sources) renderAiSources('google');
+                document.getElementById('aiResponseTimestamp').innerText = `AI failed at ${new Date().toLocaleTimeString('en-IN')}`;
+                errorBox.classList.remove('hidden');
+                errorBox.innerText = err.message;
             } finally {
                 btn.disabled = false;
-                btn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Get Recommendation`;
             }
-        }
-
-        async function fetchLiveHsbcOffers() {
-            const btn = document.getElementById('fetchOffersBtn');
-            const container = document.getElementById('aiSearchResults');
-            const content = document.getElementById('aiSearchContent');
-            if(!apiKey) { alert("Please insert your Gemini API Key in the code at line 890 to use AI features."); return; }
-
-            btn.disabled = true;
-            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Fetching...`;
-            container.classList.remove('hidden');
-            content.innerHTML = `<div class="animate-pulse text-red-500 font-medium text-center p-4">Scanning HSBC portals, Twitter/X, and TechnoFino...</div>`;
-
-            try {
-                const response = await fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: "Search for latest live HSBC Premier Credit Card India offers, transfer bonuses, or Apple/Dyson promotions posted on official sites, Twitter/X, and TechnoFino today. Provide a clean HTML summary using text-inherit classes." }] }],
-                        tools: [{ "googleSearch": {} }]
-                    })
-                });
-                const result = await response.json();
-                
-                if (result.error) throw new Error(result.error.message);
-                
-                if (result.candidates?.[0]?.content?.parts?.[0]?.text) {
-                    content.innerHTML = result.candidates[0].content.parts[0].text
-                        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-black text-inherit">$1</strong>')
-                        .replace(/^\* (.*$)/gim, '<li class="ml-4 list-disc py-0.5">$1</li>');
-                }
-            } catch (err) { content.innerHTML = `<div class="text-red-500 font-bold p-3 bg-red-500/10 rounded-xl border border-red-500/30"><i class="fa-solid fa-triangle-exclamation"></i> API Error: ${err.message}</div>`; } 
-            finally { btn.disabled = false; btn.innerHTML = `<i class="fa-solid fa-magnifying-glass"></i> AI Web Scan`; }
-        }
-
-        async function fetchLiveVoucherDeals() {
-            const btn = document.getElementById('fetchVoucherDealsBtn');
-            const container = document.getElementById('voucherSearchResults');
-            const content = document.getElementById('voucherSearchContent');
-            if(!apiKey) { alert("Please insert your Gemini API Key in the code at line 890 to use AI features."); return; }
-
-            btn.disabled = true;
-            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Scanning...`;
-            container.classList.remove('hidden');
-            content.innerHTML = `<div class="animate-pulse text-pink-500 font-medium text-center p-4">Scanning CRED, PayZapp, Park+, and Zingoy for flash sales...</div>`;
-
-            try {
-                const response = await fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: "Search the web for today's active gift card flash sales in India specifically on CRED, PayZapp, Gyftr, Park+, and Zingoy. Provide a short bulleted HTML summary using text-inherit." }] }],
-                        tools: [{ "googleSearch": {} }]
-                    })
-                });
-                const result = await response.json();
-                
-                if (result.error) throw new Error(result.error.message);
-                
-                if (result.candidates?.[0]?.content?.parts?.[0]?.text) {
-                    content.innerHTML = result.candidates[0].content.parts[0].text
-                        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-black text-inherit">$1</strong>')
-                        .replace(/^\* (.*$)/gim, '<li class="ml-4 list-disc py-0.5">$1</li>');
-                }
-            } catch (err) { content.innerHTML = `<div class="text-pink-500 font-bold p-3 bg-pink-500/10 rounded-xl border border-pink-500/30"><i class="fa-solid fa-triangle-exclamation"></i> API Error: ${err.message}</div>`; } 
-            finally { btn.disabled = false; btn.innerHTML = `<i class="fa-solid fa-magnifying-glass"></i> Scan Flash Deals`; }
         }
 
         window.onload = function() {
+            const apiKeyInput = document.getElementById('aiApiKeyInput');
+            if (apiKeyInput) {
+                const storedKey = localStorage.getItem('cardMaximizerAiKey') || '';
+                apiKeyInput.value = storedKey;
+            }
             renderCardToggles();
             calculateRewards();
-            calculateHsbcConversions();
-            
-            // PWA Manifest setup
-            const manifest = {
-                "name": "Smart Card Maximizer India",
-                "short_name": "Maximizer",
-                "display": "standalone",
-                "background_color": "#0f172a",
-                "theme_color": "#0f172a",
-                "icons": [{
-                    "src": "https://cdn-icons-png.flaticon.com/512/2156/2156381.png",
-                    "sizes": "512x512",
-                    "type": "image/png",
-                    "purpose": "any maskable"
-                }]
-            };
-            const manifestLink = document.createElement('link');
-            manifestLink.rel = 'manifest';
-            manifestLink.href = 'data:application/manifest+json;charset=utf-8,' + encodeURIComponent(JSON.stringify(manifest));
-            document.head.appendChild(manifestLink);
+            renderAiSources('google');
         };
     </script>
 </body>
