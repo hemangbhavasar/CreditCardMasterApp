@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Maximizer">
+    <meta name="theme-color" id="metaThemeColor" content="#0f172a">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2156/2156381.png">
+    <link rel="manifest" id="manifestLink">
+    <title>Smart Card & Voucher Maximizer India</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-main: #0f172a;
+            --bg-panel: rgba(30, 41, 59, 0.7);
+            --border-panel: #1e293b;
+            --text-main: #f8fafc;
+        }
+        body.theme-pure-black {
+            --bg-main: #000000;
+            --bg-panel: rgba(15, 15, 15, 0.95);
+            --border-panel: #262626;
+            --text-main: #ffffff;
+        }
+        body.theme-light {
+            --bg-main: #f8fafc;
+            --bg-panel: rgba(255, 255, 255, 0.95);
+            --border-panel: #e2e8f0;
+            --text-main: #0f172a;
+        }
+        
+        /* Native App Feel */
+        html, body {
+            overscroll-behavior-y: none; /* Prevents pull-to-refresh on mobile */
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .glass-panel {
+            background: var(--bg-panel);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-color: var(--border-panel) !important;
+        }
+
+        /* Light Theme Production Overrides */
+        body.theme-light .text-white:not(button):not(button .text-white):not(.bg-gradient-to-tr .text-white):not(.bg-blue-600 .text-white):not(.bg-pink-600 .text-white) { 
+            color: #0f172a !important; 
+        }
+        body.theme-light [class*="text-slate-"] { color: #475569 !important; }
+
+        body.theme-light [class*="bg-slate-8"],
+        body.theme-light [class*="bg-slate-9"] {
+            background-color: #ffffff !important;
+            color: #0f172a;
+        }
+        body.theme-light button[class*="bg-slate-9"] {
+            background-color: #f1f5f9 !important;
+        }
+        body.theme-light button[class*="bg-slate-9"]:hover {
+            background-color: #e2e8f0 !important;
+            color: #0f172a !important;
+        }
+        body.theme-light .bg-slate-900\/80, body.theme-light .bg-slate-950\/80 {
+            background-color: #ffffff !important;
+        }
+
+        body.theme-light [class*="border-slate-7"],
+        body.theme-light [class*="border-slate-8"] {
+            border-color: #cbd5e1 !important;
+        }
+        body.theme-light [class*="divide-slate-8"] > :not([hidden]) ~ :not([hidden]) {
+            border-color: #cbd5e1 !important;
+        }
+
+        body.theme-light select, body.theme-light input, body.theme-light textarea {
+            background-color: #f8fafc !important;
+            border-color: #cbd5e1 !important;
+            color: #0f172a !important;
+        }
+
+        /* Gradients in Light Mode */
+        body.theme-light .from-purple-950\/90 { background-image: linear-gradient(to bottom right, #f3e8ff, #ffffff) !important; border-color: #d8b4fe !important; }
+        body.theme-light .from-amber-950\/90 { background-image: linear-gradient(to bottom right, #fef3c7, #ffffff) !important; border-color: #fcd34d !important; }
+        body.theme-light .bg-emerald-950\/40 { background-color: #d1fae5 !important; }
+
+        /* Color Contrast in Light Mode */
+        body.theme-light .text-purple-300 { color: #7e22ce !important; }
+        body.theme-light .text-purple-400 { color: #6b21a8 !important; }
+        body.theme-light .text-amber-300 { color: #b45309 !important; }
+        body.theme-light .text-amber-400 { color: #92400e !important; }
+        body.theme-light .text-emerald-300 { color: #047857 !important; }
+        body.theme-light .text-emerald-400 { color: #065f46 !important; }
+        body.theme-light .text-cyan-300 { color: #0e7490 !important; }
+        body.theme-light .text-cyan-400 { color: #155e75 !important; }
+        body.theme-light .text-sky-300 { color: #0369a1 !important; }
+        body.theme-light .text-sky-400 { color: #075985 !important; }
+        body.theme-light .text-red-300, body.theme-light .text-rose-300 { color: #b91c1c !important; }
+        body.theme-light .text-red-400, body.theme-light .text-rose-400 { color: #991b1b !important; }
+        body.theme-light .text-orange-300 { color: #c2410c !important; }
+
+        /* Pure OLED Black Enhancements */
+        body.theme-pure-black [class*="bg-slate-8"],
+        body.theme-pure-black [class*="bg-slate-9"] {
+            background-color: #0a0a0a !important;
+        }
+        body.theme-pure-black [class*="border-slate-7"],
+        body.theme-pure-black [class*="border-slate-8"] {
+            border-color: #262626 !important;
+        }
+        body.theme-pure-black [class*="divide-slate-8"] > :not([hidden]) ~ :not([hidden]) {
+            border-color: #262626 !important;
+        }
+        body.theme-pure-black .from-purple-950\/90 { background-image: linear-gradient(to bottom right, #1a0b2e, #000000) !important; border-color: #3b0764 !important; }
+        body.theme-pure-black .from-amber-950\/90 { background-image: linear-gradient(to bottom right, #291400, #000000) !important; border-color: #78350f !important; }
+        body.theme-pure-black select, body.theme-pure-black input, body.theme-pure-black textarea { background-color: #0f0f0f !important; border-color: #262626 !important; }
+        body.theme-pure-black .bg-emerald-950\/40 { background-color: #022c22 !important; }
+
+        /* Hide scrollbars visually but allow scrolling */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="min-h-screen pb-safe pt-safe">
+
+    <!-- HEADER -->
+    <header class="border-b border-slate-800 bg-slate-900/80 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="bg-gradient-to-tr from-red-600 via-indigo-600 to-blue-600 p-2.5 rounded-xl text-white shadow-lg shadow-red-500/20">
+                    <i class="fa-solid fa-credit-card text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg text-white leading-tight flex items-center gap-2">
+                        Card Maximizer
+                        <span class="text-[10px] bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-full uppercase font-extrabold tracking-wider hidden sm:inline-block">India Suite</span>
+                    </h1>
+                    <p class="text-xs text-slate-400 hidden sm:block">AI Grounded Search, Vouchers & Hacks</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <!-- Theme Switcher -->
+                <button id="themeToggleBtn" onclick="cycleTheme()" class="px-3 py-2 rounded-xl text-xs font-bold bg-slate-800 border border-slate-700 hover:border-slate-500 text-slate-200 transition flex items-center gap-1.5 shadow-sm active:scale-95">
+                    <i class="fa-solid fa-moon text-indigo-400" id="themeIcon"></i>
+                    <span id="themeLabel" class="hidden sm:inline-block">Slate Dark</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 grid grid-cols-1 lg:grid-cols-12 gap-6 pb-12">
+
+        <!-- LEFT COLUMN: INPUT CONTROLS -->
+        <div class="lg:col-span-5 space-y-6">
+            
+            <!-- TRANSACTION DETAILS PANEL -->
+            <div class="glass-panel rounded-2xl p-5 sm:p-6 border border-slate-800 shadow-xl">
+                <h2 class="text-base font-bold text-white mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-sliders text-blue-400"></i> Transaction Settings
+                </h2>
+
+                <div class="space-y-4">
+                    <!-- Merchant Selection -->
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+                            Select Merchant / Category
+                        </label>
+                        <select id="merchantSelect" onchange="calculateRewards()" class="w-full bg-slate-900 border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 transition-colors">
+                            <optgroup label="E-Commerce & Vouchers">
+                                <option value="amazon" selected>Amazon India (Shopping)</option>
+                                <option value="amazon_gift_card">Amazon Pay Gift Card Buy</option>
+                                <option value="flipkart">Flipkart</option>
+                                <option value="myntra">Myntra / Ajio / Fashion</option>
+                            </optgroup>
+                            <optgroup label="Grocery & Food">
+                                <option value="swiggy_food">Swiggy Food Delivery</option>
+                                <option value="swiggy_instamart">Swiggy Instamart</option>
+                                <option value="zomato">Zomato Food</option>
+                                <option value="zepto">Zepto Quick Commerce</option>
+                                <option value="blinkit">Blinkit</option>
+                                <option value="amazon_fresh">Amazon Fresh</option>
+                            </optgroup>
+                            <optgroup label="Travel & Entertainment">
+                                <option value="hsbc_hopper_flights">HSBC Hopper Flights (6X)</option>
+                                <option value="hsbc_hopper_hotels">HSBC Hopper Hotels (12X)</option>
+                                <option value="bookmyshow">BookMyShow</option>
+                                <option value="eazydiner">EazyDiner Dining</option>
+                                <option value="international">Foreign Currency / Forex</option>
+                            </optgroup>
+                            <optgroup label="Utilities & Offline">
+                                <option value="upi_merchant">UPI Merchant (Scan & Pay)</option>
+                                <option value="utility_bills">Utility Bills</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <!-- Amount Input -->
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+                            Transaction Amount (₹)
+                        </label>
+                        <div class="relative">
+                            <span class="absolute left-4 top-3 text-slate-400 font-bold">₹</span>
+                            <input type="number" id="txnAmount" value="200" min="1" step="10" oninput="calculateRewards()" class="w-full bg-slate-900 border border-slate-700 text-white rounded-xl pl-8 pr-4 py-3 text-sm font-semibold mono focus:outline-none focus:border-blue-500 transition-colors">
+                        </div>
+                    </div>
+
+                    <!-- Additional Toggles -->
+                    <div class="pt-2 space-y-3">
+                        <label class="flex items-center justify-between p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer hover:bg-slate-900 transition active:scale-[0.99]">
+                            <span class="text-sm sm:text-xs font-medium text-slate-300 flex items-center gap-2">
+                                <i class="fa-solid fa-crown text-amber-400"></i> Amazon Prime Member
+                            </span>
+                            <input type="checkbox" id="isPrime" checked onchange="calculateRewards()" class="w-5 h-5 sm:w-4 sm:h-4 text-blue-600 rounded bg-slate-800 border-slate-700 focus:ring-blue-500">
+                        </label>
+
+                        <label class="flex items-center justify-between p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer hover:bg-slate-900 transition active:scale-[0.99]">
+                            <span class="text-sm sm:text-xs font-medium text-slate-300 flex items-center gap-2">
+                                <i class="fa-solid fa-hotel text-rose-400"></i> Value HSBC via Accor (~₹1.80/pt)
+                            </span>
+                            <input type="checkbox" id="isAccorValuation" checked onchange="calculateRewards()" class="w-5 h-5 sm:w-4 sm:h-4 text-blue-600 rounded bg-slate-800 border-slate-700 focus:ring-blue-500">
+                        </label>
+
+                        <label class="flex items-center justify-between p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer hover:bg-slate-900 transition active:scale-[0.99]">
+                            <span class="text-sm sm:text-xs font-medium text-slate-300 flex items-center gap-2">
+                                <i class="fa-solid fa-bolt text-indigo-400"></i> Kredit.pe UPI Spend > ₹25k
+                            </span>
+                            <input type="checkbox" id="isKreditMilestone" onchange="calculateRewards()" class="w-5 h-5 sm:w-4 sm:h-4 text-blue-600 rounded bg-slate-800 border-slate-700 focus:ring-blue-500">
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PORTFOLIO TOGGLES -->
+            <div class="glass-panel rounded-2xl p-5 sm:p-6 border border-slate-800 shadow-xl">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-base font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-wallet text-emerald-400"></i> Active Portfolio
+                    </h2>
+                </div>
+                <div class="space-y-2 text-xs" id="cardToggles">
+                    <!-- Injected dynamically via JS -->
+                </div>
+            </div>
+
+            <!-- DIRECT VOUCHER PORTALS -->
+            <div class="glass-panel rounded-2xl p-5 sm:p-6 border border-slate-800 shadow-xl space-y-3">
+                <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-cyan-400"></i> Quick Portal Links
+                </h3>
+                <div class="space-y-2 text-xs">
+                    <a href="https://www.gyftr.com/instabenefits" target="_blank" rel="noopener" class="flex items-center justify-between p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-red-500/50 hover:bg-slate-900 transition group active:scale-95">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+                            <span class="font-semibold text-slate-200 group-hover:text-white">HSBC Gyftr Portal</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-slate-500 text-[10px]"></i>
+                    </a>
+                    <a href="https://smartbuy.hdfcbank.com/" target="_blank" rel="noopener" class="flex items-center justify-between p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-blue-500/50 hover:bg-slate-900 transition group active:scale-95">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-2.5 h-2.5 rounded-full bg-blue-500"></div>
+                            <span class="font-semibold text-slate-200 group-hover:text-white">HDFC SmartBuy</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-slate-500 text-[10px]"></i>
+                    </a>
+                    <a href="https://kredit.pe/" target="_blank" rel="noopener" class="flex items-center justify-between p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/50 hover:bg-slate-900 transition group active:scale-95">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
+                            <span class="font-semibold text-slate-200 group-hover:text-white">Kredit.pe App</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-slate-500 text-[10px]"></i>
+                    </a>
+                    <a href="https://cred.club/" target="_blank" rel="noopener" class="flex items-center justify-between p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-pink-500/50 hover:bg-slate-900 transition group active:scale-95">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-2.5 h-2.5 rounded-full bg-pink-500"></div>
+                            <span class="font-semibold text-slate-200 group-hover:text-white">CRED App</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-slate-500 text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: MAIN CONTENT TABS -->
+        <div class="lg:col-span-7 space-y-6">
+
+            <!-- STRATEGY TAB SELECTION -->
+            <div class="glass-panel rounded-2xl p-2 border border-slate-800 flex flex-nowrap overflow-x-auto no-scrollbar gap-2 snap-x">
+                <button id="tabAiBtn" onclick="switchStrategyTab('ai')" class="snap-start flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-600/30 border border-purple-400/40">
+                    <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i> AI Assistant
+                </button>
+                <button id="tabDirectBtn" onclick="switchStrategyTab('direct')" class="snap-start flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-slate-900 text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-credit-card"></i> Swipe Rank
+                </button>
+                <button id="tabVoucherBtn" onclick="switchStrategyTab('voucher')" class="snap-start flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-slate-900 text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-gift"></i> Voucher Rank
+                </button>
+                <button id="tabHsbcSuiteBtn" onclick="switchStrategyTab('hsbc_suite')" class="snap-start flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-slate-900 text-red-400 hover:text-white border border-red-500/30 hover:bg-red-950/40">
+                    <i class="fa-solid fa-crown text-red-400"></i> HSBC Suite
+                </button>
+                <button id="tabGuideBtn" onclick="switchStrategyTab('guide')" class="snap-start flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-slate-900 text-amber-400 hover:text-white border border-amber-500/30 hover:bg-amber-950/40">
+                    <i class="fa-solid fa-book-open text-amber-400"></i> Guide & Hacks
+                </button>
+            </div>
+
+            <!-- VIEW 0: NATURAL LANGUAGE AI ASSISTANT -->
+            <div id="aiAssistantView" class="space-y-6">
+                <!-- AI Input Box -->
+                <div class="relative rounded-2xl bg-gradient-to-br from-purple-950/90 via-slate-900 to-slate-950 border border-purple-500/40 p-5 sm:p-6 shadow-2xl space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs font-bold">
+                            <i class="fa-solid fa-robot"></i> SMART CARD ADVISOR
+                        </div>
+                        <span class="text-[10px] text-slate-400 bg-slate-900/80 px-2 py-1 rounded-full border border-slate-800 hidden sm:inline-block">
+                            Live Grounded Web Search
+                        </span>
+                    </div>
+
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-black text-white">Ask Where You Are Shopping</h2>
+                        <p class="text-sm text-slate-300 mt-1 leading-relaxed opacity-90">
+                            Type your scenario (e.g. <em>"I am at Decathlon buying ₹4,000 gear"</em> or <em>"Buying ₹200 cookies on Swiggy"</em>). The AI checks your 8 cards, limits, and live flash sales to find the best route.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-col gap-3">
+                        <textarea id="aiQueryInput" rows="3" placeholder="e.g., I am at IKEA buying furniture for ₹15,000. Which card or voucher should I use?" class="w-full bg-slate-950 border border-purple-500/40 rounded-xl p-4 text-sm focus:outline-none focus:border-purple-400 transition-all placeholder:text-slate-500 resize-y text-inherit"></textarea>
+                        
+                        <button onclick="submitAiQuery()" id="aiQuerySubmitBtn" class="w-full sm:w-auto self-end px-6 py-3.5 rounded-xl font-bold text-sm bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white shadow-lg shadow-purple-600/30 flex items-center justify-center gap-2 transition active:scale-95">
+                            <i class="fa-solid fa-paper-plane"></i> Get Recommendation
+                        </button>
+                    </div>
+
+                    <!-- Quick Chips -->
+                    <div class="pt-2 flex flex-wrap items-center gap-2 text-xs">
+                        <span class="font-bold text-slate-400"><i class="fa-solid fa-lightbulb text-amber-400"></i> Try:</span>
+                        <button onclick="setAiQuery('I am at Decathlon buying sportswear for ₹4,000. Which card or voucher route is best?')" class="px-2.5 py-1.5 rounded-lg bg-slate-900/90 border border-slate-800 hover:border-purple-500/50 text-slate-300 transition active:scale-95">
+                            🛒 Decathlon ₹4k
+                        </button>
+                        <button onclick="setAiQuery('Booking an international flight worth ₹25,000. Which card gives highest travel points?')" class="px-2.5 py-1.5 rounded-lg bg-slate-900/90 border border-slate-800 hover:border-purple-500/50 text-slate-300 transition active:scale-95">
+                            ✈️ Flight ₹25k
+                        </button>
+                        <button onclick="setAiQuery('Buying ₹200 cookies on Swiggy Instamart. Should I use Swiggy HDFC or HSBC Premier?')" class="px-2.5 py-1.5 rounded-lg bg-slate-900/90 border border-slate-800 hover:border-purple-500/50 text-slate-300 transition active:scale-95">
+                            🍪 Swiggy ₹200
+                        </button>
+                    </div>
+                </div>
+
+                <!-- AI Response Card -->
+                <div id="aiResponseContainer" class="hidden glass-panel rounded-2xl p-5 sm:p-6 border border-purple-500/30 shadow-2xl space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <span class="text-sm font-bold text-purple-500 flex items-center gap-1.5">
+                            <i class="fa-solid fa-robot"></i> Tailored Strategy
+                        </span>
+                        <span class="text-xs text-slate-400 opacity-80" id="aiResponseTimestamp"></span>
+                    </div>
+                    <div id="aiResponseBody" class="text-sm leading-relaxed space-y-3 font-medium text-inherit">
+                        <!-- AI HTML injected here -->
+                    </div>
+                    <div id="aiResponseSources" class="pt-3 border-t border-slate-800 flex flex-wrap gap-2 text-xs opacity-90">
+                        <!-- Sources injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW 1 & 2: DIRECT / VOUCHER RANKING -->
+            <div id="standardStrategyView" class="space-y-6 hidden">
+                <div class="glass-panel rounded-2xl p-5 sm:p-6 border border-slate-800 shadow-xl space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
+                        <h3 class="text-base font-bold text-white flex items-center gap-2" id="comparisonTableTitle">
+                            <i class="fa-solid fa-credit-card text-blue-400"></i> Direct Swipe Ranking
+                        </h3>
+                        <span id="activeTabBadge" class="text-[11px] font-bold px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 uppercase tracking-wider self-start sm:self-auto">
+                            Direct Checkout
+                        </span>
+                    </div>
+
+                    <div class="overflow-x-auto -mx-5 sm:mx-0 px-5 sm:px-0">
+                        <table class="w-full text-left text-xs text-slate-300 min-w-[500px]">
+                            <thead class="bg-slate-900/80 text-slate-400 uppercase font-bold tracking-wider border-b border-slate-800">
+                                <tr>
+                                    <th class="p-3">Rank / Card</th>
+                                    <th class="p-3">Return</th>
+                                    <th class="p-3">Est. Value (₹)</th>
+                                    <th class="p-3 w-1/2">Rule & Rationale</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rankingTableBody" class="divide-y divide-slate-800/60 font-medium">
+                                <!-- Injected via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- LIVE VOUCHER RADAR (Only on Voucher Tab) -->
+                <div id="liveVoucherDealsPanel" class="hidden glass-panel rounded-2xl p-5 sm:p-6 border border-pink-500/30 shadow-xl space-y-5">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
+                        <div>
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-tags text-pink-500"></i> Flash Deals Radar
+                            </h3>
+                            <p class="text-xs text-slate-400 mt-1">Live web search for today's discounts on CRED, PayZapp, Park+.</p>
+                        </div>
+                        <button onclick="fetchLiveVoucherDeals()" id="fetchVoucherDealsBtn" class="px-5 py-3 rounded-xl font-bold text-sm bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white shadow-lg shadow-pink-600/30 flex items-center justify-center gap-2 transition active:scale-95 whitespace-nowrap self-start sm:self-auto">
+                            <i class="fa-solid fa-magnifying-glass"></i> Scan Flash Deals
+                        </button>
+                    </div>
+
+                    <div id="voucherSearchResults" class="hidden p-5 rounded-xl bg-slate-950/80 border border-pink-500/40 space-y-3">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                            <span class="text-sm font-bold text-pink-500 flex items-center gap-1.5">
+                                <i class="fa-solid fa-robot"></i> Live Results (Grounded)
+                            </span>
+                            <span class="text-xs text-slate-400 opacity-80" id="voucherFetchTime"></span>
+                        </div>
+                        <div id="voucherSearchContent" class="text-sm leading-relaxed space-y-2 font-medium text-inherit"></div>
+                        <div id="voucherSearchSources" class="pt-3 border-t border-slate-800 flex flex-wrap gap-2 text-xs opacity-90"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW 3: HSBC PREMIER MASTER SUITE -->
+            <div id="hsbcSuiteView" class="space-y-6 hidden">
+                
+                <!-- Valuation Calculator -->
+                <div class="glass-panel rounded-2xl p-5 sm:p-6 border border-slate-800 shadow-xl space-y-5">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
+                        <div>
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-calculator text-emerald-400"></i> Points Valuation Engine
+                            </h3>
+                            <p class="text-xs text-slate-400 mt-1">Convert your HSBC points to see real-world Rupee values.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="w-full sm:w-auto">
+                            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
+                                Enter HSBC Reward Points
+                            </label>
+                        </div>
+                        <input type="number" id="hsbcPointsInput" value="10000" min="1000" step="1000" oninput="calculateHsbcConversions()" class="w-full sm:w-48 bg-slate-950 border border-slate-700 text-white rounded-xl px-4 py-3 text-base font-bold mono text-right focus:outline-none focus:border-red-500 transition-colors">
+                    </div>
+
+                    <div class="overflow-x-auto -mx-5 sm:mx-0 px-5 sm:px-0">
+                        <table class="w-full text-left text-xs text-slate-300 min-w-[500px]">
+                            <thead class="bg-slate-900/80 text-slate-400 uppercase font-bold tracking-wider border-b border-slate-800">
+                                <tr>
+                                    <th class="p-3">Partner</th>
+                                    <th class="p-3">Ratio</th>
+                                    <th class="p-3">Est. Value (₹)</th>
+                                    <th class="p-3">Recommendation</th>
+                                </tr>
+                            </thead>
+                            <tbody id="hsbcConversionTable" class="divide-y divide-slate-800/60 font-medium">
+                                <!-- Injected via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- HSBC Live Offers Radar -->
+                <div class="glass-panel rounded-2xl p-5 sm:p-6 border border-red-500/30 shadow-xl space-y-5">
+                    <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+                        <div>
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-fire text-red-500"></i> Latest HSBC Offers Radar
+                            </h3>
+                            <p class="text-xs text-slate-400 mt-1">Live web & Twitter/X community alerts for transfer bonuses.</p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-center gap-3">
+                            <a href="https://x.com/search?q=hsbc%20premier&f=live" target="_blank" rel="noopener" class="w-full sm:w-auto px-4 py-3 rounded-xl font-bold text-xs bg-slate-900 border border-slate-700 hover:border-sky-500 text-slate-300 hover:text-white flex items-center justify-center gap-1.5 transition active:scale-95">
+                                <i class="fa-brands fa-x-twitter text-sky-400"></i> Twitter/X Deals
+                            </a>
+                            <button onclick="fetchLiveHsbcOffers()" id="fetchOffersBtn" class="w-full sm:w-auto px-5 py-3 rounded-xl font-bold text-xs bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-500 hover:to-rose-600 text-white shadow-lg shadow-red-600/30 flex items-center justify-center gap-2 transition active:scale-95">
+                                <i class="fa-solid fa-magnifying-glass"></i> AI Web Scan
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="aiSearchResults" class="hidden p-5 rounded-xl bg-slate-950/80 border border-red-500/40 space-y-3">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                            <span class="text-sm font-bold text-red-500 flex items-center gap-1.5">
+                                <i class="fa-solid fa-robot"></i> Live Results (Grounded)
+                            </span>
+                            <span class="text-xs text-slate-400 opacity-80" id="aiFetchTime"></span>
+                        </div>
+                        <div id="aiSearchContent" class="text-sm leading-relaxed space-y-2 font-medium text-inherit"></div>
+                        <div id="aiSearchSources" class="pt-3 border-t border-slate-800 flex flex-wrap gap-2 text-xs opacity-90"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- VIEW 4: ALL-CARDS GUIDE -->
+            <div id="guideView" class="space-y-6 hidden">
+                <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-amber-950/90 via-slate-900 to-slate-950 border border-amber-500/40 p-5 sm:p-6 shadow-2xl space-y-3">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-bold">
+                        <i class="fa-solid fa-graduation-cap"></i> PORTFOLIO MASTERCLASS
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-black text-white">Card Maximizer Handbook</h2>
+                    <p class="text-sm text-slate-300 leading-relaxed max-w-2xl opacity-90">
+                        Everything you need to know about Accor point conversions, Hopper multipliers, secret multi-item cart tricks, and Kredit.pe UPI hacks.
+                    </p>
+                </div>
+
+                <div class="glass-panel rounded-2xl p-5 sm:p-6 border border-slate-800 shadow-xl space-y-4 text-sm text-slate-300 font-medium">
+                    <h3 class="text-base font-bold text-cyan-400 flex items-center gap-2 border-b border-slate-800 pb-3">
+                        <i class="fa-solid fa-wand-magic-sparkles text-cyan-400"></i> Secret Hacks & Optimization Tricks
+                    </h3>
+
+                    <div class="space-y-4 pt-2 text-inherit">
+                        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <span class="font-bold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-cart-shopping text-orange-400"></i> Swiggy HDFC "Multi-Item Cart" Trick
+                                </span>
+                                <span class="px-2.5 py-1 rounded bg-orange-500/20 text-orange-400 text-[10px] font-bold uppercase tracking-wide border border-orange-500/30">Force 5% - 10%</span>
+                            </div>
+                            <p class="opacity-90 leading-relaxed">
+                                <strong>How it works:</strong> Standalone digital gift cards pass under MCC 5947 (Gift Shops) yielding only 1%. Adding a small physical item (e.g. a ₹10 pen on Amazon or a grocery item on Swiggy Instamart) forces the payment gateway to bill under the main retail merchant ID. This grants the <strong>full 5% or 10% cashback</strong> on the entire cart including the voucher!
+                            </p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <span class="font-bold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-qrcode text-emerald-400"></i> Yes Bank ACE + Kredit.pe Hack
+                                </span>
+                                <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold uppercase tracking-wide border border-emerald-500/30">3% - 5% UPI</span>
+                            </div>
+                            <p class="opacity-90 leading-relaxed">
+                                <strong>How it works:</strong> Scanning merchant UPI QR codes specifically inside the <strong>Kredit.pe App</strong> using your ACE RuPay card unlocks <strong>3% flat cashback</strong> with zero upper cap, escalating to <strong>5% cashback</strong> once your monthly UPI spends cross ₹25,000!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- JAVASCRIPT ENGINE -->
+    <script>
+        // ---------------------------------------------------------
+        // CRITICAL API KEY SECTION: Paste your Google AI Studio Key
+        // ---------------------------------------------------------
+        const apiKey = "AQ.Ab8RN6IThSg9zo86BO3BT6lVD_A2THBizu-oYAml6bozQbTPdA"; // <--- PASTE KEY HERE BEFORE DEPLOYING
+        
+        // State & Theme Management
+        let activeStrategyMode = 'ai'; 
+        let currentTheme = 'slate'; 
+
+        // 8 ACTIVE PORTFOLIO CARDS DEFINITION
+        const PORTFOLIO = [
+            { id: 'hsbc_premier_cc', name: 'HSBC Premier Credit', network: 'Mastercard', badge: 'LTF', color: 'from-red-600 to-rose-600', active: true },
+            { id: 'swiggy_hdfc', name: 'Swiggy HDFC Credit', network: 'Mastercard', badge: 'LTF', color: 'from-orange-500 to-amber-500', active: true },
+            { id: 'hdfc_millennia', name: 'HDFC Millennia Credit', network: 'Visa', badge: 'LTF', color: 'from-blue-600 to-indigo-600', active: true },
+            { id: 'amazon_icici', name: 'Amazon Pay ICICI', network: 'Visa', badge: 'LTF', color: 'from-amber-500 to-yellow-500', active: true },
+            { id: 'yes_ace_rupay', name: 'Yes Bank ACE RuPay', network: 'RuPay', badge: 'LTF', color: 'from-emerald-500 to-teal-500', active: true },
+            { id: 'scapia_federal', name: 'Scapia Federal', network: 'Visa', badge: 'LTF', color: 'from-teal-500 to-cyan-500', active: true },
+            { id: 'axis_burgundy_dc', name: 'Axis Burgundy Debit', network: 'Mastercard', badge: 'LTF', color: 'from-purple-600 to-indigo-600', active: true },
+            { id: 'hsbc_premier_dc', name: 'HSBC Premier Debit', network: 'Visa', badge: 'LTF', color: 'from-slate-600 to-slate-800', active: true }
+        ];
+
+        // Robust fetch with Exponential Backoff Retry mechanism
+        async function fetchWithRetry(url, options, retries = 3) {
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    return response;
+                } catch (err) {
+                    if (i === retries - 1) throw err;
+                    await new Promise(res => setTimeout(res, 1000 * (Math.pow(2, i)))); // Exponential backoff
+                }
+            }
+        }
+
+        function cycleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('themeIcon');
+            const label = document.getElementById('themeLabel');
+            const metaTheme = document.getElementById('metaThemeColor');
+
+            if (currentTheme === 'slate') {
+                currentTheme = 'pure-black';
+                body.className = 'theme-pure-black min-h-screen pb-safe pt-safe';
+                if (icon) icon.className = "fa-solid fa-circle text-neutral-400";
+                if (label) label.innerText = "Total Dark";
+                if (metaTheme) metaTheme.content = "#000000";
+            } else if (currentTheme === 'pure-black') {
+                currentTheme = 'light';
+                body.className = 'theme-light min-h-screen pb-safe pt-safe';
+                if (icon) icon.className = "fa-solid fa-sun text-amber-500";
+                if (label) label.innerText = "Light Mode";
+                if (metaTheme) metaTheme.content = "#f8fafc";
+            } else {
+                currentTheme = 'slate';
+                body.className = 'min-h-screen pb-safe pt-safe';
+                if (icon) icon.className = "fa-solid fa-moon text-indigo-400";
+                if (label) label.innerText = "Slate Dark";
+                if (metaTheme) metaTheme.content = "#0f172a";
+            }
+        }
+
+        function renderCardToggles() {
+            const container = document.getElementById('cardToggles');
+            if (!container) return;
+            container.innerHTML = PORTFOLIO.map(card => `
+                <label class="flex items-center justify-between p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 cursor-pointer hover:bg-slate-900 transition active:scale-[0.99]">
+                    <div class="flex items-center gap-3">
+                        <div class="w-3.5 h-3.5 rounded-full bg-gradient-to-r ${card.color}"></div>
+                        <div>
+                            <div class="font-semibold text-white text-sm sm:text-xs">${card.name}</div>
+                            <div class="text-[10px] text-slate-400">${card.network} • ${card.badge}</div>
+                        </div>
+                    </div>
+                    <input type="checkbox" id="toggle_${card.id}" ${card.active ? 'checked' : ''} onchange="toggleCard('${card.id}')" class="w-5 h-5 sm:w-4 sm:h-4 text-blue-600 rounded bg-slate-800 border-slate-700 focus:ring-blue-500">
+                </label>
+            `).join('');
+        }
+
+        function toggleCard(cardId) {
+            const card = PORTFOLIO.find(c => c.id === cardId);
+            if (card) {
+                card.active = document.getElementById(`toggle_${cardId}`).checked;
+                calculateRewards();
+            }
+        }
+
+        function switchStrategyTab(mode) {
+            activeStrategyMode = mode;
+            const tabs = {
+                'ai': { btn: 'tabAiBtn', view: 'aiAssistantView', activeClass: 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-600/30 border-purple-400/40' },
+                'direct': { btn: 'tabDirectBtn', view: 'standardStrategyView', activeClass: 'bg-blue-600 text-white shadow-lg shadow-blue-600/30' },
+                'voucher': { btn: 'tabVoucherBtn', view: 'standardStrategyView', activeClass: 'bg-pink-600 text-white shadow-lg shadow-pink-600/30' },
+                'hsbc_suite': { btn: 'tabHsbcSuiteBtn', view: 'hsbcSuiteView', activeClass: 'bg-gradient-to-r from-red-600 to-rose-700 text-white shadow-lg shadow-red-600/30 border-red-500/50' },
+                'guide': { btn: 'tabGuideBtn', view: 'guideView', activeClass: 'bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-lg shadow-amber-500/30 border-amber-500/50' }
+            };
+
+            // Reset all
+            Object.keys(tabs).forEach(k => {
+                const btn = document.getElementById(tabs[k].btn);
+                const view = document.getElementById(tabs[k].view);
+                if (btn) btn.className = `snap-start flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 bg-slate-900 text-slate-400 hover:text-white border border-transparent`;
+                if (view) view.classList.add('hidden');
+            });
+
+            // Activate Target
+            const target = tabs[mode];
+            if (document.getElementById(target.btn)) {
+                document.getElementById(target.btn).className = `snap-start flex-1 min-w-[120px] py-3 px-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center justify-center gap-1.5 border ${target.activeClass}`;
+            }
+            if (document.getElementById(target.view)) {
+                document.getElementById(target.view).classList.remove('hidden');
+            }
+
+            // Contextual Setup
+            const tableTitle = document.getElementById('comparisonTableTitle');
+            const activeBadge = document.getElementById('activeTabBadge');
+            const liveVoucherPanel = document.getElementById('liveVoucherDealsPanel');
+            
+            if (liveVoucherPanel) liveVoucherPanel.classList.add('hidden');
+
+            if (mode === 'direct') {
+                if (tableTitle) tableTitle.innerHTML = `<i class="fa-solid fa-credit-card text-blue-400"></i> Direct Swipe Ranking`;
+                if (activeBadge) { activeBadge.innerText = "Direct Checkout"; activeBadge.className = "text-[11px] font-bold px-3 py-1 rounded-full bg-blue-500/10 text-blue-500 border border-blue-500/20 uppercase tracking-wider self-start sm:self-auto"; }
+                calculateRewards();
+            } else if (mode === 'voucher') {
+                if (tableTitle) tableTitle.innerHTML = `<i class="fa-solid fa-gift text-pink-400"></i> Voucher Strategy Ranking`;
+                if (activeBadge) { activeBadge.innerText = "Voucher Buy Route"; activeBadge.className = "text-[11px] font-bold px-3 py-1 rounded-full bg-pink-500/10 text-pink-500 border border-pink-500/20 uppercase tracking-wider self-start sm:self-auto"; }
+                if (liveVoucherPanel) liveVoucherPanel.classList.remove('hidden');
+                calculateRewards();
+            } else if (mode === 'hsbc_suite') {
+                calculateHsbcConversions();
+            }
+        }
+
+        function calculateRewards() {
+            const merchantEl = document.getElementById('merchantSelect');
+            const amountEl = document.getElementById('txnAmount');
+            const isPrimeEl = document.getElementById('isPrime');
+            const isAccorEl = document.getElementById('isAccorValuation');
+            const isKreditEl = document.getElementById('isKreditMilestone');
+            const tableBody = document.getElementById('rankingTableBody');
+
+            if (!merchantEl || !amountEl || !tableBody) return;
+
+            const merchant = merchantEl.value;
+            const amount = parseFloat(amountEl.value) || 0;
+            const isPrime = isPrimeEl ? isPrimeEl.checked : true;
+            const isAccor = isAccorEl ? isAccorEl.checked : true;
+            const isKredit = isKreditEl ? isKreditEl.checked : false;
+
+            const activeCards = PORTFOLIO.filter(c => c.active);
+            let results = [];
+
+            activeCards.forEach(card => {
+                let returnPct = 0; let rewardAmt = 0; let rationale = "";
+
+                if (activeStrategyMode === 'voucher') {
+                    if (card.id === 'hsbc_premier_cc') {
+                        const hsbcRate = isAccor ? 5.4 : 1.5;
+                        returnPct = hsbcRate + 2.0; 
+                        rationale = `Buy voucher on <strong>HSBC Gyftr</strong>: Earn 3X Points (${hsbcRate}% via Accor) + ~2% instant brand discount.`;
+                    } else if (card.id === 'swiggy_hdfc') {
+                        returnPct = 5.0;
+                        rationale = `<strong>Multi-Item Cart Trick:</strong> Add a ₹10 physical item alongside voucher on Swiggy/Amazon to force 5% shopping cashback!`;
+                    } else if (card.id === 'hdfc_millennia') {
+                        returnPct = 5.0;
+                        rationale = `Buy voucher via <strong>PayZapp / SmartBuy</strong> using Millennia for 5% CashPoints.`;
+                    } else if (card.id === 'amazon_icici') {
+                        returnPct = 2.0;
+                        rationale = `Buy Amazon Pay Gift Card directly for 2% cashback (Note: 5% is only for physical products).`;
+                    } else if (card.id === 'yes_ace_rupay') {
+                        returnPct = isKredit ? 5.0 : 3.0;
+                        rationale = `Buy vouchers inside <strong>Kredit.pe App</strong> via UPI for ${returnPct}% flat uncapped cashback.`;
+                    } else {
+                        returnPct = 1.0;
+                        rationale = `Standard 1% base reward via aggregator (Park+ / Zingoy).`;
+                    }
+                } else {
+                    if (card.id === 'hsbc_premier_cc') {
+                        if (merchant === 'hsbc_hopper_flights') { returnPct = isAccor ? 32.4 : 18.0; rationale = `6X Hopper Flights (18 Pts/₹100). Yields ${returnPct}% via Accor.`; }
+                        else if (merchant === 'hsbc_hopper_hotels') { returnPct = isAccor ? 64.8 : 36.0; rationale = `12X Hopper Hotels (36 Pts/₹100). Yields ${returnPct}% via Accor.`; }
+                        else if (merchant === 'international') { const val = isAccor ? 5.4 : 1.5; returnPct = val - 1.17; rationale = `0.99% Forex fee (+GST) vs ${val}% Accor value = <strong>+${returnPct.toFixed(2)}% Net Profit!</strong>`; }
+                        else { returnPct = isAccor ? 5.4 : 1.5; rationale = `Standard 3 Pts/₹100 yielding ${returnPct}% via Accor 1:1 transfer.`; }
+                    } else if (card.id === 'swiggy_hdfc') {
+                        if (['swiggy_food', 'swiggy_instamart'].includes(merchant)) {
+                            if (amount >= 249) { returnPct = 10.0; rationale = `10% Cashback on Swiggy (Min ₹249 met).`; }
+                            else { returnPct = 1.0; rationale = `⚠️ <strong>Threshold Missed:</strong> ₹${amount} is below ₹249 min spend for 10%. Yields 1%.`; }
+                        } else if (['flipkart', 'myntra', 'zomato', 'zepto', 'blinkit', 'amazon', 'amazon_fresh'].includes(merchant)) {
+                            if (amount >= 100) { returnPct = 5.0; rationale = `5% Cashback on top e-commerce (Min ₹100 met).`; }
+                            else { returnPct = 1.0; rationale = `Under ₹100 min spend. Yields 1%.`; }
+                        } else { returnPct = 1.0; rationale = `1% base cashback.`; }
+                    } else if (card.id === 'hdfc_millennia') {
+                        if (['amazon', 'flipkart', 'swiggy_food', 'zomato', 'myntra', 'bookmyshow'].includes(merchant)) { returnPct = 5.0; rationale = `5% CashPoints on top partner merchant.`; }
+                        else { returnPct = 1.0; rationale = `1% base CashPoints.`; }
+                    } else if (card.id === 'amazon_icici') {
+                        if (['amazon', 'amazon_fresh'].includes(merchant)) { returnPct = isPrime ? 5.0 : 3.0; rationale = `Unlimited ${returnPct}% for ${isPrime ? 'Prime' : 'Non-Prime'} members.`; }
+                        else if (merchant === 'amazon_gift_card') { returnPct = 2.0; rationale = `2% on Gift Cards (5% reserved for physical items).`; }
+                        else if (['utility_bills', 'upi_merchant'].includes(merchant)) { returnPct = 2.0; rationale = `2% on Amazon Pay bill payments.`; }
+                        else { returnPct = 1.0; rationale = `1% unlimited base cashback.`; }
+                    } else if (card.id === 'yes_ace_rupay') {
+                        if (merchant === 'upi_merchant') { returnPct = isKredit ? 5.0 : 3.0; rationale = `Scan QR via <strong>Kredit.pe</strong>: ${returnPct}% flat uncapped cashback!`; }
+                        else { returnPct = 1.0; rationale = `1% online standard rate.`; }
+                    } else if (card.id === 'scapia_federal') {
+                        if (merchant === 'international') { returnPct = 2.0; rationale = `0% Forex fee + 2% Scapia Coins.`; }
+                        else { returnPct = 1.0; rationale = `Standard Scapia Coins base rate.`; }
+                    } else if (card.id === 'axis_burgundy_dc') {
+                        if (merchant === 'bookmyshow') { returnPct = 20.0; rewardAmt = Math.min(amount, 1000); rationale = `Up to 4 free tickets/mo (Requires ₹10k quarterly spend).`; }
+                        else { returnPct = 0; rationale = `Edge rewards discontinued.`; }
+                    } else if (card.id === 'hsbc_premier_dc') { returnPct = 0; rationale = `Zero-fee ATM card. Use CC for rewards.`; }
+                }
+
+                if (card.id !== 'axis_burgundy_dc' && card.id !== 'hsbc_premier_dc') {
+                    rewardAmt = (amount * returnPct) / 100;
+                }
+                
+                results.push({ cardName: card.name, network: card.network, returnPct, rewardAmt, rationale });
+            });
+
+            results.sort((a, b) => b.rewardAmt - a.rewardAmt);
+
+            tableBody.innerHTML = results.map((res, index) => {
+                const isBest = index === 0 && res.rewardAmt > 0;
+                return `
+                    <tr class="${isBest ? 'bg-emerald-950/20 border-l-4 border-l-emerald-500' : 'hover:bg-slate-900/60'} transition">
+                        <td class="p-3 sm:p-4 whitespace-nowrap">
+                            <div class="font-bold ${isBest ? 'text-emerald-500' : 'text-inherit'} flex items-center gap-1.5 text-sm">
+                                ${isBest ? '<i class="fa-solid fa-trophy"></i>' : `#${index + 1}`} ${res.cardName}
+                            </div>
+                            <div class="text-[10px] text-slate-500 uppercase tracking-wide mt-0.5">${res.network}</div>
+                        </td>
+                        <td class="p-3 sm:p-4 font-bold mono ${isBest ? 'text-emerald-500' : 'text-inherit'}">${res.returnPct.toFixed(1)}%</td>
+                        <td class="p-3 sm:p-4 font-black mono text-base ${isBest ? 'text-emerald-500' : 'text-inherit'}">₹${res.rewardAmt.toFixed(2)}</td>
+                        <td class="p-3 sm:p-4 text-inherit text-[11px] sm:text-xs leading-relaxed opacity-90">${res.rationale}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function calculateHsbcConversions() {
+            const inputEl = document.getElementById('hsbcPointsInput');
+            const tableEl = document.getElementById('hsbcConversionTable');
+            if (!inputEl || !tableEl) return;
+
+            const pts = parseFloat(inputEl.value) || 0;
+            const PARTNERS = [
+                { partner: 'Accor Live Limitless (ALL)', ratio: '1 : 1', perPt: 1.80, rec: '🏆 #1 BEST VALUE (€40 / 2,000 pts)', color: 'text-amber-500' },
+                { partner: 'Singapore Airlines KrisFlyer', ratio: '1 : 1', perPt: 1.00, rec: '⭐ Excellent for Asia Business Class', color: 'text-emerald-500' },
+                { partner: 'British Airways / Qatar Avios', ratio: '1 : 1', perPt: 1.00, rec: '⭐ Excellent for Europe Award Flights', color: 'text-sky-500' },
+                { partner: 'Marriott Bonvoy', ratio: '1 : 1', perPt: 0.75, rec: '👍 Decent for Domestic Luxury Stays', color: 'text-indigo-500' },
+                { partner: 'Apple / Brand Vouchers', ratio: '1 : 1', perPt: 0.50, rec: '🛒 Decent Option for Electronics', color: 'text-slate-400' },
+                { partner: 'Cash Statement Credit', ratio: '1 : 1', perPt: 0.40, rec: '⚠️ POOR VALUE - Destroys 75% value!', color: 'text-red-500' }
+            ];
+
+            tableEl.innerHTML = PARTNERS.map(item => `
+                <tr class="hover:bg-slate-900/60 transition">
+                    <td class="p-4 font-bold text-inherit text-sm whitespace-nowrap">${item.partner}</td>
+                    <td class="p-4 mono font-semibold text-slate-500">${item.ratio}</td>
+                    <td class="p-4 mono font-black text-emerald-500 text-sm">₹${(pts * item.perPt).toLocaleString('en-IN', { maximumFractionDigits: 2 })}</td>
+                    <td class="p-4 text-xs font-bold ${item.color}">${item.rec}</td>
+                </tr>
+            `).join('');
+        }
+
+        function setAiQuery(text) {
+            const input = document.getElementById('aiQueryInput');
+            if (input) { input.value = text; submitAiQuery(); }
+        }
+
+        async function submitAiQuery() {
+            const queryInput = document.getElementById('aiQueryInput').value.trim();
+            if (!queryInput || !apiKey) {
+                if(!apiKey) alert("Please insert your Gemini API Key in the code to use AI features.");
+                return;
+            }
+
+            const btn = document.getElementById('aiQuerySubmitBtn');
+            const container = document.getElementById('aiResponseContainer');
+            const body = document.getElementById('aiResponseBody');
+            const sourcesBox = document.getElementById('aiResponseSources');
+
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Analyzing...`;
+            container.classList.remove('hidden');
+            body.innerHTML = `<div class="p-4 text-center font-medium animate-pulse opacity-80"><i class="fa-solid fa-brain text-purple-500 text-3xl mb-2 block"></i> Evaluating 8-card portfolio against live merchant limits & voucher deals...</div>`;
+            sourcesBox.innerHTML = '';
+
+            const systemPrompt = `Act as an expert Indian Credit Card Analyst. User's cards: HSBC Premier CC, Swiggy HDFC CC, HDFC Millennia CC, Amazon Pay ICICI CC, Yes Bank ACE RuPay CC, Scapia Federal CC, Axis Burgundy DC, HSBC Premier DC. Voucher portals: HSBC Gyftr, HDFC PayZapp, Kredit.pe, CRED. Give a crisp HTML recommendation specifying the exact best card/voucher route, expected return (₹ and %), step-by-step execution guide, and backup options based on 2026 rules (e.g., Swiggy HDFC ₹249 minimum, Accor 1:1 transfer value). Use text-inherit classes for styling so it works in light/dark themes.`;
+
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetchWithRetry(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: queryInput }] }],
+                        tools: [{ "google_search": {} }],
+                        systemInstruction: { parts: [{ text: systemPrompt }] }
+                    })
+                });
+
+                const result = await response.json();
+                const candidate = result.candidates?.[0];
+
+                if (candidate && candidate.content?.parts?.[0]?.text) {
+                    body.innerHTML = candidate.content.parts[0].text
+                        .replace(/^### (.*$)/gim, '<h4 class="font-black text-purple-500 text-lg mt-4 mb-2">$1</h4>')
+                        .replace(/^## (.*$)/gim, '<h4 class="font-black text-purple-500 text-lg mt-4 mb-2">$1</h4>')
+                        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-black text-inherit opacity-100">$1</strong>')
+                        .replace(/^\* (.*$)/gim, '<li class="ml-5 list-disc py-0.5">$1</li>');
+
+                    document.getElementById('aiResponseTimestamp').innerText = `Live at ${new Date().toLocaleTimeString('en-IN')}`;
+
+                    const sources = candidate.groundingMetadata?.groundingAttributions?.map(attr => ({ uri: attr.web?.uri, title: attr.web?.title })).filter(s => s.uri) || [];
+                    if (sources.length > 0) {
+                        sourcesBox.innerHTML = `<span class="font-bold text-inherit opacity-70">Verified Sources:</span> ` + sources.slice(0, 4).map(s => `
+                            <a href="${s.uri}" target="_blank" class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 text-blue-400 hover:underline inline-flex items-center gap-1.5 active:scale-95">
+                                ${s.title.substring(0, 20)}... <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                            </a>
+                        `).join('');
+                    }
+                }
+            } catch (err) {
+                body.innerHTML = `<div class="text-red-500 font-bold"><i class="fa-solid fa-wifi"></i> Connection error. Try again.</div>`;
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Get Recommendation`;
+            }
+        }
+
+        async function fetchLiveHsbcOffers() {
+            const btn = document.getElementById('fetchOffersBtn');
+            const container = document.getElementById('aiSearchResults');
+            const content = document.getElementById('aiSearchContent');
+            if(!apiKey) return;
+
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Fetching...`;
+            container.classList.remove('hidden');
+            content.innerHTML = `<div class="animate-pulse text-red-500 font-medium text-center p-4">Scanning HSBC portals, Twitter/X, and TechnoFino for live transfer bonuses...</div>`;
+
+            try {
+                const response = await fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: "Search for latest live HSBC Premier Credit Card India offers, transfer bonuses, or Apple/Dyson promotions posted on official sites, Twitter/X, and TechnoFino today. Provide a clean HTML summary." }] }],
+                        tools: [{ "google_search": {} }]
+                    })
+                });
+                
+                const result = await response.json();
+                if (result.candidates?.[0]?.content?.parts?.[0]?.text) {
+                    content.innerHTML = result.candidates[0].content.parts[0].text
+                        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-black text-inherit">$1</strong>')
+                        .replace(/^\* (.*$)/gim, '<li class="ml-4 list-disc py-0.5">$1</li>');
+                }
+            } catch (err) { content.innerHTML = `<div class="text-red-500">Failed to fetch live deals.</div>`; } 
+            finally { btn.disabled = false; btn.innerHTML = `<i class="fa-solid fa-magnifying-glass"></i> AI Web Scan`; }
+        }
+
+        async function fetchLiveVoucherDeals() {
+            const btn = document.getElementById('fetchVoucherDealsBtn');
+            const container = document.getElementById('voucherSearchResults');
+            const content = document.getElementById('voucherSearchContent');
+            if(!apiKey) return;
+
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Scanning...`;
+            container.classList.remove('hidden');
+            content.innerHTML = `<div class="animate-pulse text-pink-500 font-medium text-center p-4">Scanning CRED, PayZapp, and Zingoy for today's flash sales...</div>`;
+
+            try {
+                const response = await fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: "Search the web for today's active gift card flash sales in India specifically on CRED, PayZapp, Gyftr, Park+, and Zingoy. Provide a short bulleted HTML summary." }] }],
+                        tools: [{ "google_search": {} }]
+                    })
+                });
+                const result = await response.json();
+                if (result.candidates?.[0]?.content?.parts?.[0]?.text) {
+                    content.innerHTML = result.candidates[0].content.parts[0].text
+                        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-black text-inherit">$1</strong>')
+                        .replace(/^\* (.*$)/gim, '<li class="ml-4 list-disc py-0.5">$1</li>');
+                }
+            } catch (err) { content.innerHTML = `<div class="text-pink-500">Failed to fetch flash deals.</div>`; } 
+            finally { btn.disabled = false; btn.innerHTML = `<i class="fa-solid fa-magnifying-glass"></i> Scan Flash Deals`; }
+        }
+
+        window.onload = function() {
+            renderCardToggles();
+            calculateRewards();
+            calculateHsbcConversions();
+            
+            // Dynamic PWA Manifest for Native "Add to Home Screen" support
+            const manifest = {
+                "name": "Smart Card Maximizer India",
+                "short_name": "Maximizer",
+                "display": "standalone",
+                "background_color": "#0f172a",
+                "theme_color": "#0f172a",
+                "icons": [{
+                    "src": "https://cdn-icons-png.flaticon.com/512/2156/2156381.png",
+                    "sizes": "512x512",
+                    "type": "image/png",
+                    "purpose": "any maskable"
+                }]
+            };
+            const manifestLink = document.getElementById('manifestLink');
+            if (manifestLink) {
+                manifestLink.setAttribute('href', 'data:application/manifest+json;charset=utf-8,' + encodeURIComponent(JSON.stringify(manifest)));
+            }
+        };
+    </script>
+</body>
+</html>
